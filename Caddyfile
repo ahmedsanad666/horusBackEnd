@@ -1,46 +1,9 @@
-# Caddyfile for Horus API with automatic HTTPS
-# Replace 206.189.218.64 with your actual droplet IP address
-
-api.206-189-218-64.nip.io {
-    # Enable automatic HTTPS with Let's Encrypt
-    tls {
-        on_demand
-    }
-    
-    # Reverse proxy to the API service
-    reverse_proxy api:8080
-    
-    # Enable compression
-    encode gzip zstd
-    
-    # Add security headers
-    header {
-        # Security headers
-        X-Content-Type-Options nosniff
-        X-Frame-Options DENY
-        X-XSS-Protection "1; mode=block"
-        Referrer-Policy "strict-origin-when-cross-origin"
-        
-        # CORS headers (Caddy will handle these automatically)
-        Access-Control-Allow-Origin "https://hoursteck.web.app"
-        Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
-        Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
-        Access-Control-Allow-Credentials true
-    }
-    
-    # Handle preflight OPTIONS requests
-    @options {
-        method OPTIONS
-    }
-    respond @options 200 {
-        header Access-Control-Allow-Origin "https://hoursteck.web.app"
-        header Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
-        header Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
-        header Access-Control-Allow-Credentials true
-    }
+{
+	# optional: email for Let's Encrypt notifications
+	# email you@example.com
 }
 
-# Redirect HTTP to HTTPS
-:80 {
-    redir https://{host}{uri} permanent
+api.206-189-218-64.nip.io {
+	encode zstd gzip
+	reverse_proxy http://api:8080
 }
