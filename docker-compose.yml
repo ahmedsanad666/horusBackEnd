@@ -1,15 +1,11 @@
 services:
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: mssql
     environment:
       ACCEPT_EULA: "Y"
-      MSSQL_PID: "Express"              # free edition (ok for small prod; 10GB DB limit)
-      SA_PASSWORD: "ChangeMe!12345!"    # use a strong password
-    # do NOT publish 1433 unless you need remote DB access:
-    # ports: ["1433:1433"]
-    volumes:
-      - mssql_data:/var/opt/mssql        # persistent storage on the droplet
+      MSSQL_PID: "Express"
+      SA_PASSWORD: "ChangeMe!12345!"
+    volumes: [ "mssql_data:/var/opt/mssql" ]
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "/opt/mssql-tools18/bin/sqlcmd","-S","localhost","-U","sa","-P","ChangeMe!12345!","-C","-Q","SELECT 1"]
@@ -19,16 +15,14 @@ services:
 
   api:
     build: .
-    container_name: horus-api
     depends_on:
       mssql:
         condition: service_healthy
-    ports:
-      - "80:8080"
+    ports: [ "80:8080" ]
     environment:
       ASPNETCORE_ENVIRONMENT: "Production"
-      # appsettings.json -> { "ConnectionStrings": { "DefaultConnection": ... } }
-      ConnectionStrings__DefaultConnection: "Server=mssql,1433;Database=HorusDb;User Id=sa;Password=ChangeMe!12345!;TrustServerCertificate=True;"
+      ConnectionStrings__DefaultConnection: "Server=mssql,1433;Database=HorusDb;User Id=sa;Password=ChangeMe!12345!;Encrypt=False;TrustServerCertificate=True;"
+      JWT__SigningKey: "replace-with-a-long-random-secret"
     restart: unless-stopped
 
 volumes:
