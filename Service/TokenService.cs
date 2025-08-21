@@ -32,7 +32,7 @@ namespace BackEnd.Service
         new Claim(ClaimTypes.Role, user.Role)
     };
 
-            var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
+            var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256Signature);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
