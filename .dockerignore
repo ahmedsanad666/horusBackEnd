@@ -1,0 +1,8 @@
+bin
+obj
+.vs
+*.user
+*.swp
+*.tmp
+*.log
+publish

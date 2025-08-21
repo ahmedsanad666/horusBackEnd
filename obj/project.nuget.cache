@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AkNVe1Ne/NI=",
+  "dgSpecHash": "msV6s5PLc3s=",
   "success": true,
-  "projectFilePath": "E:\\horusTeck\\horusTeck\\BackEnd\\BackEnd.csproj",
+  "projectFilePath": "E:\\horusTeck\\hoursBack\\BackEnd\\BackEnd.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\asus\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

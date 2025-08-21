@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\horusTeck\\horusTeck\\BackEnd\\BackEnd.csproj": {}
+    "E:\\horusTeck\\hoursBack\\BackEnd\\BackEnd.csproj": {}
   },
   "projects": {
-    "E:\\horusTeck\\horusTeck\\BackEnd\\BackEnd.csproj": {
+    "E:\\horusTeck\\hoursBack\\BackEnd\\BackEnd.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\horusTeck\\horusTeck\\BackEnd\\BackEnd.csproj",
+        "projectUniqueName": "E:\\horusTeck\\hoursBack\\BackEnd\\BackEnd.csproj",
         "projectName": "BackEnd",
-        "projectPath": "E:\\horusTeck\\horusTeck\\BackEnd\\BackEnd.csproj",
+        "projectPath": "E:\\horusTeck\\hoursBack\\BackEnd\\BackEnd.csproj",
         "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
-        "outputPath": "E:\\horusTeck\\horusTeck\\BackEnd\\obj\\",
+        "outputPath": "E:\\horusTeck\\hoursBack\\BackEnd\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
