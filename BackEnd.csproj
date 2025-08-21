@@ -12,8 +12,13 @@
 
     <!-- EF Core for SQL Server -->
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.*" />
-    <!-- Optional: EF CLI tooling; safe to include -->
+    <!-- EF Core Tools - for CLI commands like dotnet ef -->
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.*">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <!-- EF Core Design - for design-time services and migrations -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.*">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
