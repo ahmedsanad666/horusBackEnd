@@ -119,6 +119,8 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 
 // Log startup information
 var logger = app.Services.GetRequiredService<ILogger<Program>>();
@@ -141,14 +143,13 @@ else
 }
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// if (app.Environment.IsDevelopment())
+// {
+
+// }
 app.UseStaticFiles();
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
