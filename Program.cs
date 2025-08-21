@@ -87,13 +87,21 @@ builder.Services.AddScoped<IPortfolioRepository, PortfolioRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 
 // CORS
+var corsOrigins = (builder.Configuration["CORS__Origins"] ?? "")
+    .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowFrontend", policy =>
-        policy.WithOrigins("http://localhost:3000", "https://localhost:3000", "https://hoursteck.web.app")
-              .AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowCredentials());
+    options.AddPolicy("Frontend", policy =>
+    {
+        if (corsOrigins.Length > 0)
+            policy.WithOrigins(corsOrigins)          // exact origins (scheme+host+optional port)
+                  .AllowAnyHeader()
+                  .AllowAnyMethod()
+                  .AllowCredentials();               // only if you use cookies/auth tokens in credentials
+        else
+            policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); // fallback for dev
+    });
 });
 
 var app = builder.Build();
@@ -109,14 +117,7 @@ app.UseSwaggerUI();
 app.UseStaticFiles();
 // app.UseHttpsRedirection(); // keep off unless you terminate TLS in front (e.g., Nginx)
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseCors("AllowFrontend");
-}
-else
-{
-    app.UseCors(p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-}
+app.UseCors("Frontend");
 
 app.UseAuthentication();
 app.UseAuthorization();
