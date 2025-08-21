@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DbBhkeCNnnpGAIj1PnOIV11/v0JI57MTPon5Y6TVghs=",
+  "Hash": "MUO70f9o6Cw4wnos61bby2xIBtuc1MdC8E6mc6CUUnE=",
   "Source": "BackEnd",
   "BasePath": "_content/BackEnd",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "BackEnd\\wwwroot",
       "Source": "BackEnd",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\1990a7db-9a20-4691-aebb-3041b44ef859.jpg",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\1990a7db-9a20-4691-aebb-3041b44ef859.jpg",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/1990a7db-9a20-4691-aebb-3041b44ef859#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -38,10 +38,10 @@
       "OriginalItemSpec": "wwwroot\\images\\1990a7db-9a20-4691-aebb-3041b44ef859.jpg"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\24e3b96e-5d0e-4fd1-a4f7-26e2eb1af799.jpg",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\24e3b96e-5d0e-4fd1-a4f7-26e2eb1af799.jpg",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/24e3b96e-5d0e-4fd1-a4f7-26e2eb1af799#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -59,10 +59,10 @@
       "OriginalItemSpec": "wwwroot\\images\\24e3b96e-5d0e-4fd1-a4f7-26e2eb1af799.jpg"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\25d26cf9-e888-4f1e-ae68-c094c4479684.jpg",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\25d26cf9-e888-4f1e-ae68-c094c4479684.jpg",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/25d26cf9-e888-4f1e-ae68-c094c4479684#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -80,10 +80,10 @@
       "OriginalItemSpec": "wwwroot\\images\\25d26cf9-e888-4f1e-ae68-c094c4479684.jpg"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\32887bbd-c9c5-478c-acaf-6a9fb70189a2_gratisography-augmented-reality-800x525.jpg",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\32887bbd-c9c5-478c-acaf-6a9fb70189a2_gratisography-augmented-reality-800x525.jpg",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/32887bbd-c9c5-478c-acaf-6a9fb70189a2_gratisography-augmented-reality-800x525#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -101,10 +101,10 @@
       "OriginalItemSpec": "wwwroot\\images\\32887bbd-c9c5-478c-acaf-6a9fb70189a2_gratisography-augmented-reality-800x525.jpg"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\4d6c91b0-f892-4751-b0ac-0887db24f557.jpg",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\4d6c91b0-f892-4751-b0ac-0887db24f557.jpg",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/4d6c91b0-f892-4751-b0ac-0887db24f557#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -122,10 +122,10 @@
       "OriginalItemSpec": "wwwroot\\images\\4d6c91b0-f892-4751-b0ac-0887db24f557.jpg"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\60e868a1-7df3-459c-935f-192cc151ff68.jpg",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\60e868a1-7df3-459c-935f-192cc151ff68.jpg",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/60e868a1-7df3-459c-935f-192cc151ff68#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -143,10 +143,10 @@
       "OriginalItemSpec": "wwwroot\\images\\60e868a1-7df3-459c-935f-192cc151ff68.jpg"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\61e3ff92-9de7-4117-8998-adce623687be_gratisography-augmented-reality-800x525.jpg",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\61e3ff92-9de7-4117-8998-adce623687be_gratisography-augmented-reality-800x525.jpg",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/61e3ff92-9de7-4117-8998-adce623687be_gratisography-augmented-reality-800x525#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -164,10 +164,10 @@
       "OriginalItemSpec": "wwwroot\\images\\61e3ff92-9de7-4117-8998-adce623687be_gratisography-augmented-reality-800x525.jpg"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\66a4c4a3-6477-4c29-9d59-cc4eaadc1d2d_download.jpg",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\66a4c4a3-6477-4c29-9d59-cc4eaadc1d2d_download.jpg",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/66a4c4a3-6477-4c29-9d59-cc4eaadc1d2d_download#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -185,10 +185,10 @@
       "OriginalItemSpec": "wwwroot\\images\\66a4c4a3-6477-4c29-9d59-cc4eaadc1d2d_download.jpg"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\6d18dd26-8212-4bf9-801a-6cb3f572e82d_wallpaperflare-cropped.jpg",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\6d18dd26-8212-4bf9-801a-6cb3f572e82d_wallpaperflare-cropped.jpg",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/6d18dd26-8212-4bf9-801a-6cb3f572e82d_wallpaperflare-cropped#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -206,10 +206,10 @@
       "OriginalItemSpec": "wwwroot\\images\\6d18dd26-8212-4bf9-801a-6cb3f572e82d_wallpaperflare-cropped.jpg"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\70069852-58d4-49d2-92fc-e430dfb6bbb0.jpg",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\70069852-58d4-49d2-92fc-e430dfb6bbb0.jpg",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/70069852-58d4-49d2-92fc-e430dfb6bbb0#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -227,10 +227,10 @@
       "OriginalItemSpec": "wwwroot\\images\\70069852-58d4-49d2-92fc-e430dfb6bbb0.jpg"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\812eb6ec-c712-4541-be75-759b7b834867.jpg",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\812eb6ec-c712-4541-be75-759b7b834867.jpg",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/812eb6ec-c712-4541-be75-759b7b834867#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -248,10 +248,10 @@
       "OriginalItemSpec": "wwwroot\\images\\812eb6ec-c712-4541-be75-759b7b834867.jpg"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\88c8bc5c-db4a-4b0e-ba6b-164fa2954263.png",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\88c8bc5c-db4a-4b0e-ba6b-164fa2954263.png",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/88c8bc5c-db4a-4b0e-ba6b-164fa2954263#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -269,10 +269,10 @@
       "OriginalItemSpec": "wwwroot\\images\\88c8bc5c-db4a-4b0e-ba6b-164fa2954263.png"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\a49197d4-d888-40d9-b225-e88f6d5c7d54.jpg",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\a49197d4-d888-40d9-b225-e88f6d5c7d54.jpg",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/a49197d4-d888-40d9-b225-e88f6d5c7d54#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -290,10 +290,10 @@
       "OriginalItemSpec": "wwwroot\\images\\a49197d4-d888-40d9-b225-e88f6d5c7d54.jpg"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\a676c66d-cadb-41df-bbad-494fdfa80de7.jpg",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\a676c66d-cadb-41df-bbad-494fdfa80de7.jpg",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/a676c66d-cadb-41df-bbad-494fdfa80de7#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -311,10 +311,10 @@
       "OriginalItemSpec": "wwwroot\\images\\a676c66d-cadb-41df-bbad-494fdfa80de7.jpg"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\aa5a1c03-5a5b-4cb6-9e9a-4d4f9a2b2569.jpg",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\aa5a1c03-5a5b-4cb6-9e9a-4d4f9a2b2569.jpg",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/aa5a1c03-5a5b-4cb6-9e9a-4d4f9a2b2569#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -332,10 +332,10 @@
       "OriginalItemSpec": "wwwroot\\images\\aa5a1c03-5a5b-4cb6-9e9a-4d4f9a2b2569.jpg"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\b282a577-b412-4a4f-bc53-a8a5362837d8.jpg",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\b282a577-b412-4a4f-bc53-a8a5362837d8.jpg",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/b282a577-b412-4a4f-bc53-a8a5362837d8#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -353,10 +353,10 @@
       "OriginalItemSpec": "wwwroot\\images\\b282a577-b412-4a4f-bc53-a8a5362837d8.jpg"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\b4d8b179-66e5-4c33-af98-296b15b326d7.png",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\b4d8b179-66e5-4c33-af98-296b15b326d7.png",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/b4d8b179-66e5-4c33-af98-296b15b326d7#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -374,10 +374,10 @@
       "OriginalItemSpec": "wwwroot\\images\\b4d8b179-66e5-4c33-af98-296b15b326d7.png"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\be33adcf-7236-4efc-809b-4ec7b94631e4.jpg",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\be33adcf-7236-4efc-809b-4ec7b94631e4.jpg",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/be33adcf-7236-4efc-809b-4ec7b94631e4#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -395,10 +395,10 @@
       "OriginalItemSpec": "wwwroot\\images\\be33adcf-7236-4efc-809b-4ec7b94631e4.jpg"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\bf14c5c6-909a-49af-898f-e2d6352ca0aa.jpg",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\bf14c5c6-909a-49af-898f-e2d6352ca0aa.jpg",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/bf14c5c6-909a-49af-898f-e2d6352ca0aa#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -416,10 +416,10 @@
       "OriginalItemSpec": "wwwroot\\images\\bf14c5c6-909a-49af-898f-e2d6352ca0aa.jpg"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\dba03227-6fe0-4daf-8304-3edee6d0ec90.jpg",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\dba03227-6fe0-4daf-8304-3edee6d0ec90.jpg",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/dba03227-6fe0-4daf-8304-3edee6d0ec90#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -437,10 +437,10 @@
       "OriginalItemSpec": "wwwroot\\images\\dba03227-6fe0-4daf-8304-3edee6d0ec90.jpg"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\dba13a0b-d1d6-4ce3-8541-d72edca46ceb.jpg",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\dba13a0b-d1d6-4ce3-8541-d72edca46ceb.jpg",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/dba13a0b-d1d6-4ce3-8541-d72edca46ceb#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -458,10 +458,10 @@
       "OriginalItemSpec": "wwwroot\\images\\dba13a0b-d1d6-4ce3-8541-d72edca46ceb.jpg"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\eb6d2d0c-1655-4fe5-b3e2-3a3604274e95.png",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\eb6d2d0c-1655-4fe5-b3e2-3a3604274e95.png",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/eb6d2d0c-1655-4fe5-b3e2-3a3604274e95#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -479,10 +479,10 @@
       "OriginalItemSpec": "wwwroot\\images\\eb6d2d0c-1655-4fe5-b3e2-3a3604274e95.png"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\eb6f5f31-616b-4ede-8203-81fcba28dd57.png",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\eb6f5f31-616b-4ede-8203-81fcba28dd57.png",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/eb6f5f31-616b-4ede-8203-81fcba28dd57#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -500,10 +500,10 @@
       "OriginalItemSpec": "wwwroot\\images\\eb6f5f31-616b-4ede-8203-81fcba28dd57.png"
     },
     {
-      "Identity": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\eca18dd5-59a1-4124-a4ae-cb994cc4f48c_gratisography-augmented-reality-800x525.jpg",
+      "Identity": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\eca18dd5-59a1-4124-a4ae-cb994cc4f48c_gratisography-augmented-reality-800x525.jpg",
       "SourceId": "BackEnd",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\",
+      "ContentRoot": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\",
       "BasePath": "_content/BackEnd",
       "RelativePath": "images/eca18dd5-59a1-4124-a4ae-cb994cc4f48c_gratisography-augmented-reality-800x525#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -524,7 +524,7 @@
   "Endpoints": [
     {
       "Route": "images/1990a7db-9a20-4691-aebb-3041b44ef859.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\1990a7db-9a20-4691-aebb-3041b44ef859.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\1990a7db-9a20-4691-aebb-3041b44ef859.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -561,7 +561,7 @@
     },
     {
       "Route": "images/1990a7db-9a20-4691-aebb-3041b44ef859.pkb1unoev1.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\1990a7db-9a20-4691-aebb-3041b44ef859.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\1990a7db-9a20-4691-aebb-3041b44ef859.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -606,7 +606,7 @@
     },
     {
       "Route": "images/24e3b96e-5d0e-4fd1-a4f7-26e2eb1af799.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\24e3b96e-5d0e-4fd1-a4f7-26e2eb1af799.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\24e3b96e-5d0e-4fd1-a4f7-26e2eb1af799.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -643,7 +643,7 @@
     },
     {
       "Route": "images/24e3b96e-5d0e-4fd1-a4f7-26e2eb1af799.u5dymhcs80.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\24e3b96e-5d0e-4fd1-a4f7-26e2eb1af799.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\24e3b96e-5d0e-4fd1-a4f7-26e2eb1af799.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -688,7 +688,7 @@
     },
     {
       "Route": "images/25d26cf9-e888-4f1e-ae68-c094c4479684.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\25d26cf9-e888-4f1e-ae68-c094c4479684.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\25d26cf9-e888-4f1e-ae68-c094c4479684.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -725,7 +725,7 @@
     },
     {
       "Route": "images/25d26cf9-e888-4f1e-ae68-c094c4479684.zyh0cpb8ko.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\25d26cf9-e888-4f1e-ae68-c094c4479684.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\25d26cf9-e888-4f1e-ae68-c094c4479684.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -770,7 +770,7 @@
     },
     {
       "Route": "images/32887bbd-c9c5-478c-acaf-6a9fb70189a2_gratisography-augmented-reality-800x525.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\32887bbd-c9c5-478c-acaf-6a9fb70189a2_gratisography-augmented-reality-800x525.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\32887bbd-c9c5-478c-acaf-6a9fb70189a2_gratisography-augmented-reality-800x525.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -807,7 +807,7 @@
     },
     {
       "Route": "images/32887bbd-c9c5-478c-acaf-6a9fb70189a2_gratisography-augmented-reality-800x525.ns6q4qlqvt.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\32887bbd-c9c5-478c-acaf-6a9fb70189a2_gratisography-augmented-reality-800x525.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\32887bbd-c9c5-478c-acaf-6a9fb70189a2_gratisography-augmented-reality-800x525.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -852,7 +852,7 @@
     },
     {
       "Route": "images/4d6c91b0-f892-4751-b0ac-0887db24f557.h2mzd9l545.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\4d6c91b0-f892-4751-b0ac-0887db24f557.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\4d6c91b0-f892-4751-b0ac-0887db24f557.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -897,7 +897,7 @@
     },
     {
       "Route": "images/4d6c91b0-f892-4751-b0ac-0887db24f557.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\4d6c91b0-f892-4751-b0ac-0887db24f557.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\4d6c91b0-f892-4751-b0ac-0887db24f557.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -934,7 +934,7 @@
     },
     {
       "Route": "images/60e868a1-7df3-459c-935f-192cc151ff68.3o9umqmi6v.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\60e868a1-7df3-459c-935f-192cc151ff68.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\60e868a1-7df3-459c-935f-192cc151ff68.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -979,7 +979,7 @@
     },
     {
       "Route": "images/60e868a1-7df3-459c-935f-192cc151ff68.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\60e868a1-7df3-459c-935f-192cc151ff68.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\60e868a1-7df3-459c-935f-192cc151ff68.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1016,7 +1016,7 @@
     },
     {
       "Route": "images/61e3ff92-9de7-4117-8998-adce623687be_gratisography-augmented-reality-800x525.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\61e3ff92-9de7-4117-8998-adce623687be_gratisography-augmented-reality-800x525.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\61e3ff92-9de7-4117-8998-adce623687be_gratisography-augmented-reality-800x525.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1053,7 +1053,7 @@
     },
     {
       "Route": "images/61e3ff92-9de7-4117-8998-adce623687be_gratisography-augmented-reality-800x525.ns6q4qlqvt.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\61e3ff92-9de7-4117-8998-adce623687be_gratisography-augmented-reality-800x525.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\61e3ff92-9de7-4117-8998-adce623687be_gratisography-augmented-reality-800x525.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1098,7 +1098,7 @@
     },
     {
       "Route": "images/66a4c4a3-6477-4c29-9d59-cc4eaadc1d2d_download.b9nutol4pn.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\66a4c4a3-6477-4c29-9d59-cc4eaadc1d2d_download.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\66a4c4a3-6477-4c29-9d59-cc4eaadc1d2d_download.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1143,7 +1143,7 @@
     },
     {
       "Route": "images/66a4c4a3-6477-4c29-9d59-cc4eaadc1d2d_download.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\66a4c4a3-6477-4c29-9d59-cc4eaadc1d2d_download.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\66a4c4a3-6477-4c29-9d59-cc4eaadc1d2d_download.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1180,7 +1180,7 @@
     },
     {
       "Route": "images/6d18dd26-8212-4bf9-801a-6cb3f572e82d_wallpaperflare-cropped.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\6d18dd26-8212-4bf9-801a-6cb3f572e82d_wallpaperflare-cropped.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\6d18dd26-8212-4bf9-801a-6cb3f572e82d_wallpaperflare-cropped.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1217,7 +1217,7 @@
     },
     {
       "Route": "images/6d18dd26-8212-4bf9-801a-6cb3f572e82d_wallpaperflare-cropped.kfqmzcosdw.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\6d18dd26-8212-4bf9-801a-6cb3f572e82d_wallpaperflare-cropped.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\6d18dd26-8212-4bf9-801a-6cb3f572e82d_wallpaperflare-cropped.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1262,7 +1262,7 @@
     },
     {
       "Route": "images/70069852-58d4-49d2-92fc-e430dfb6bbb0.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\70069852-58d4-49d2-92fc-e430dfb6bbb0.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\70069852-58d4-49d2-92fc-e430dfb6bbb0.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1299,7 +1299,7 @@
     },
     {
       "Route": "images/70069852-58d4-49d2-92fc-e430dfb6bbb0.o0d2zmis1x.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\70069852-58d4-49d2-92fc-e430dfb6bbb0.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\70069852-58d4-49d2-92fc-e430dfb6bbb0.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1344,7 +1344,7 @@
     },
     {
       "Route": "images/812eb6ec-c712-4541-be75-759b7b834867.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\812eb6ec-c712-4541-be75-759b7b834867.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\812eb6ec-c712-4541-be75-759b7b834867.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1381,7 +1381,7 @@
     },
     {
       "Route": "images/812eb6ec-c712-4541-be75-759b7b834867.rb34ubss26.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\812eb6ec-c712-4541-be75-759b7b834867.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\812eb6ec-c712-4541-be75-759b7b834867.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1426,7 +1426,7 @@
     },
     {
       "Route": "images/88c8bc5c-db4a-4b0e-ba6b-164fa2954263.4i6acbxf36.png",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\88c8bc5c-db4a-4b0e-ba6b-164fa2954263.png",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\88c8bc5c-db4a-4b0e-ba6b-164fa2954263.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1471,7 +1471,7 @@
     },
     {
       "Route": "images/88c8bc5c-db4a-4b0e-ba6b-164fa2954263.png",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\88c8bc5c-db4a-4b0e-ba6b-164fa2954263.png",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\88c8bc5c-db4a-4b0e-ba6b-164fa2954263.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1508,7 +1508,7 @@
     },
     {
       "Route": "images/a49197d4-d888-40d9-b225-e88f6d5c7d54.0yb8k9biuw.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\a49197d4-d888-40d9-b225-e88f6d5c7d54.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\a49197d4-d888-40d9-b225-e88f6d5c7d54.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1553,7 +1553,7 @@
     },
     {
       "Route": "images/a49197d4-d888-40d9-b225-e88f6d5c7d54.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\a49197d4-d888-40d9-b225-e88f6d5c7d54.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\a49197d4-d888-40d9-b225-e88f6d5c7d54.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1590,7 +1590,7 @@
     },
     {
       "Route": "images/a676c66d-cadb-41df-bbad-494fdfa80de7.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\a676c66d-cadb-41df-bbad-494fdfa80de7.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\a676c66d-cadb-41df-bbad-494fdfa80de7.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1627,7 +1627,7 @@
     },
     {
       "Route": "images/a676c66d-cadb-41df-bbad-494fdfa80de7.rb34ubss26.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\a676c66d-cadb-41df-bbad-494fdfa80de7.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\a676c66d-cadb-41df-bbad-494fdfa80de7.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1672,7 +1672,7 @@
     },
     {
       "Route": "images/aa5a1c03-5a5b-4cb6-9e9a-4d4f9a2b2569.e0ap3js95x.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\aa5a1c03-5a5b-4cb6-9e9a-4d4f9a2b2569.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\aa5a1c03-5a5b-4cb6-9e9a-4d4f9a2b2569.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1717,7 +1717,7 @@
     },
     {
       "Route": "images/aa5a1c03-5a5b-4cb6-9e9a-4d4f9a2b2569.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\aa5a1c03-5a5b-4cb6-9e9a-4d4f9a2b2569.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\aa5a1c03-5a5b-4cb6-9e9a-4d4f9a2b2569.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1754,7 +1754,7 @@
     },
     {
       "Route": "images/b282a577-b412-4a4f-bc53-a8a5362837d8.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\b282a577-b412-4a4f-bc53-a8a5362837d8.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\b282a577-b412-4a4f-bc53-a8a5362837d8.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1791,7 +1791,7 @@
     },
     {
       "Route": "images/b282a577-b412-4a4f-bc53-a8a5362837d8.ns6q4qlqvt.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\b282a577-b412-4a4f-bc53-a8a5362837d8.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\b282a577-b412-4a4f-bc53-a8a5362837d8.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1836,7 +1836,7 @@
     },
     {
       "Route": "images/b4d8b179-66e5-4c33-af98-296b15b326d7.png",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\b4d8b179-66e5-4c33-af98-296b15b326d7.png",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\b4d8b179-66e5-4c33-af98-296b15b326d7.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1873,7 +1873,7 @@
     },
     {
       "Route": "images/b4d8b179-66e5-4c33-af98-296b15b326d7.xgx9tcnhjb.png",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\b4d8b179-66e5-4c33-af98-296b15b326d7.png",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\b4d8b179-66e5-4c33-af98-296b15b326d7.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1918,7 +1918,7 @@
     },
     {
       "Route": "images/be33adcf-7236-4efc-809b-4ec7b94631e4.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\be33adcf-7236-4efc-809b-4ec7b94631e4.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\be33adcf-7236-4efc-809b-4ec7b94631e4.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1955,7 +1955,7 @@
     },
     {
       "Route": "images/be33adcf-7236-4efc-809b-4ec7b94631e4.kdx9fqy3mw.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\be33adcf-7236-4efc-809b-4ec7b94631e4.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\be33adcf-7236-4efc-809b-4ec7b94631e4.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2000,7 +2000,7 @@
     },
     {
       "Route": "images/bf14c5c6-909a-49af-898f-e2d6352ca0aa.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\bf14c5c6-909a-49af-898f-e2d6352ca0aa.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\bf14c5c6-909a-49af-898f-e2d6352ca0aa.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2037,7 +2037,7 @@
     },
     {
       "Route": "images/bf14c5c6-909a-49af-898f-e2d6352ca0aa.o0d2zmis1x.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\bf14c5c6-909a-49af-898f-e2d6352ca0aa.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\bf14c5c6-909a-49af-898f-e2d6352ca0aa.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2082,7 +2082,7 @@
     },
     {
       "Route": "images/dba03227-6fe0-4daf-8304-3edee6d0ec90.b9nutol4pn.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\dba03227-6fe0-4daf-8304-3edee6d0ec90.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\dba03227-6fe0-4daf-8304-3edee6d0ec90.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2127,7 +2127,7 @@
     },
     {
       "Route": "images/dba03227-6fe0-4daf-8304-3edee6d0ec90.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\dba03227-6fe0-4daf-8304-3edee6d0ec90.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\dba03227-6fe0-4daf-8304-3edee6d0ec90.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2164,7 +2164,7 @@
     },
     {
       "Route": "images/dba13a0b-d1d6-4ce3-8541-d72edca46ceb.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\dba13a0b-d1d6-4ce3-8541-d72edca46ceb.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\dba13a0b-d1d6-4ce3-8541-d72edca46ceb.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2201,7 +2201,7 @@
     },
     {
       "Route": "images/dba13a0b-d1d6-4ce3-8541-d72edca46ceb.ns6q4qlqvt.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\dba13a0b-d1d6-4ce3-8541-d72edca46ceb.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\dba13a0b-d1d6-4ce3-8541-d72edca46ceb.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2246,7 +2246,7 @@
     },
     {
       "Route": "images/eb6d2d0c-1655-4fe5-b3e2-3a3604274e95.0se3bsfcz9.png",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\eb6d2d0c-1655-4fe5-b3e2-3a3604274e95.png",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\eb6d2d0c-1655-4fe5-b3e2-3a3604274e95.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2291,7 +2291,7 @@
     },
     {
       "Route": "images/eb6d2d0c-1655-4fe5-b3e2-3a3604274e95.png",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\eb6d2d0c-1655-4fe5-b3e2-3a3604274e95.png",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\eb6d2d0c-1655-4fe5-b3e2-3a3604274e95.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2328,7 +2328,7 @@
     },
     {
       "Route": "images/eb6f5f31-616b-4ede-8203-81fcba28dd57.4i6acbxf36.png",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\eb6f5f31-616b-4ede-8203-81fcba28dd57.png",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\eb6f5f31-616b-4ede-8203-81fcba28dd57.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2373,7 +2373,7 @@
     },
     {
       "Route": "images/eb6f5f31-616b-4ede-8203-81fcba28dd57.png",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\eb6f5f31-616b-4ede-8203-81fcba28dd57.png",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\eb6f5f31-616b-4ede-8203-81fcba28dd57.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2410,7 +2410,7 @@
     },
     {
       "Route": "images/eca18dd5-59a1-4124-a4ae-cb994cc4f48c_gratisography-augmented-reality-800x525.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\eca18dd5-59a1-4124-a4ae-cb994cc4f48c_gratisography-augmented-reality-800x525.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\eca18dd5-59a1-4124-a4ae-cb994cc4f48c_gratisography-augmented-reality-800x525.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2447,7 +2447,7 @@
     },
     {
       "Route": "images/eca18dd5-59a1-4124-a4ae-cb994cc4f48c_gratisography-augmented-reality-800x525.ns6q4qlqvt.jpg",
-      "AssetFile": "E:\\horusTeck\\horusTeck\\BackEnd\\wwwroot\\images\\eca18dd5-59a1-4124-a4ae-cb994cc4f48c_gratisography-augmented-reality-800x525.jpg",
+      "AssetFile": "E:\\horusTeck\\hoursBack\\BackEnd\\wwwroot\\images\\eca18dd5-59a1-4124-a4ae-cb994cc4f48c_gratisography-augmented-reality-800x525.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
