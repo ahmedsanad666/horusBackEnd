@@ -122,4 +122,16 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// ---- Auto-apply migrations on startup ----
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDBContext>();
+    // optional: sql retry is already configured in AddDbContext
+    if (db.Database.GetPendingMigrations().Any())
+        db.Database.Migrate();
+    else
+        db.Database.EnsureCreated(); // fallback if you don't have migrations yet
+}
+
 app.Run();
