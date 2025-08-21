@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Logging;
 using System.Text;
+using System.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,29 +24,10 @@ builder.WebHost.CaptureStartupErrors(true).UseSetting("detailedErrors", "true");
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-// Swagger (+ JWT auth in Swagger)
-builder.Services.AddSwaggerGen(option =>
+// Swagger configuration
+builder.Services.AddSwaggerGen(c =>
 {
-    option.SwaggerDoc("v1", new OpenApiInfo { Title = "Horus API", Version = "v1" });
-    option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-    {
-        In = ParameterLocation.Header,
-        Description = "JWT Authorization header using the Bearer scheme. Example: 'Bearer {token}'",
-        Name = "Authorization",
-        Type = SecuritySchemeType.Http,
-        Scheme = "Bearer",
-        BearerFormat = "JWT"
-    });
-    option.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
-            },
-            Array.Empty<string>()
-        }
-    });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "BackEnd", Version = "v1" });
 });
 
 // ---- SQL Server DbContext ----
@@ -122,7 +104,7 @@ var logger = app.Services.GetRequiredService<ILogger<Program>>();
 logger.LogInformation("Environment: {env} | Port: {port}", app.Environment.EnvironmentName, port);
 
 // ---- Pipeline ----
-// make Swagger use the forwarded host/scheme
+// Make the generated Swagger doc use the forwarded scheme/host
 app.UseSwagger(c =>
 {
     c.PreSerializeFilters.Add((doc, req) =>
@@ -132,7 +114,11 @@ app.UseSwagger(c =>
         doc.Servers = new List<OpenApiServer> { new() { Url = $"{scheme}://{host}" } };
     });
 });
-app.UseSwaggerUI();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "BackEnd v1");
+    c.RoutePrefix = "swagger"; // default; ok to keep
+});
 
 app.UseStaticFiles();
 // app.UseHttpsRedirection(); // keep off unless you terminate TLS in front (e.g., Nginx)
