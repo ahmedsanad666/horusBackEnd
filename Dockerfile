@@ -1,7 +1,7 @@
 # ---------- build ----------
     FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
     WORKDIR /src
-    COPY NuGet.config ./
+  
     COPY BackEnd.csproj ./
     RUN dotnet restore BackEnd.csproj --verbosity:minimal
     COPY . .
