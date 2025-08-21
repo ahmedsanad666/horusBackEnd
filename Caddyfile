@@ -5,5 +5,10 @@
 
 api.206-189-218-64.nip.io {
 	encode zstd gzip
-	reverse_proxy http://api:8080
+	reverse_proxy http://api:8080 {
+		header_up Host {host}
+		header_up X-Forwarded-Host {host}
+		header_up X-Forwarded-Proto {scheme}
+		header_up X-Forwarded-For {remote}
+	}
 }
