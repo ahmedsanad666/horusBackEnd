@@ -30,6 +30,18 @@ namespace BackEnd.Controllers
             _logger = logger;
         }
 
+        [HttpGet("health")]
+        public IActionResult Health()
+        {
+            return Ok(new
+            {
+                Status = "Healthy",
+                Timestamp = DateTime.UtcNow,
+                Service = "Horus API",
+                Version = "1.0.0"
+            });
+        }
+
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
         {

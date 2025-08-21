@@ -31,13 +31,29 @@ services:
     depends_on:
       mssql:
         condition: service_healthy
-    ports: ["80:8080"]
+    # Remove external port mapping - only Caddy will access it internally
+    expose: ["8080"]
     environment:
       ASPNETCORE_ENVIRONMENT: "Production"
       ConnectionStrings__DefaultConnection: "Server=mssql,1433;Database=HorusDb;User Id=sa;Password=ChangeMe!12345!;Encrypt=False;TrustServerCertificate=True;"
-      JWT__SigningKey: "replace-with-a-long-random-secret"
-      CORS__Origins: "https://hoursteck.web.app,http://localhost:3000,https://localhost:3000"
+      JWT__SigningKey: "super-secret-jwt-signing-key-for-horus-api-2024-very-long-and-secure-key-that-meets-hmac-sha256-requirements-with-at-least-256-bits-32-characters-minimum-abcdefghijklmnopqrstuvwxyz-1234567890-ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      CORS__Origins: "https://hoursteck.web.app"
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - api
     restart: unless-stopped
 
 volumes:
   mssql_data:
+  caddy_data:
+  caddy_config:
