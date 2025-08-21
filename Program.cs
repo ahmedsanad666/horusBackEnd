@@ -4,6 +4,7 @@ using BackEnd.Modules;
 using BackEnd.Repositories;
 using BackEnd.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -106,12 +107,31 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+// ---- Trust proxy headers from Caddy ----
+var fwd = new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+};
+// when running in containers, clear defaults so all proxies are allowed
+fwd.KnownNetworks.Clear();
+fwd.KnownProxies.Clear();
+app.UseForwardedHeaders(fwd);
+
 // ---- Logging basics ----
 var logger = app.Services.GetRequiredService<ILogger<Program>>();
 logger.LogInformation("Environment: {env} | Port: {port}", app.Environment.EnvironmentName, port);
 
 // ---- Pipeline ----
-app.UseSwagger();
+// make Swagger use the forwarded host/scheme
+app.UseSwagger(c =>
+{
+    c.PreSerializeFilters.Add((doc, req) =>
+    {
+        var scheme = req.Headers["X-Forwarded-Proto"].FirstOrDefault() ?? req.Scheme;
+        var host = req.Headers["X-Forwarded-Host"].FirstOrDefault() ?? req.Host.Value;
+        doc.Servers = new List<OpenApiServer> { new() { Url = $"{scheme}://{host}" } };
+    });
+});
 app.UseSwaggerUI();
 
 app.UseStaticFiles();
