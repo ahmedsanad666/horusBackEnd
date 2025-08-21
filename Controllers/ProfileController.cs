@@ -229,7 +229,8 @@ namespace BackEnd.Controllers
         }
 
         [HttpPost("upload-image")]
-        public async Task<IActionResult> UploadImage([FromForm] IFormFile file)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> UploadImage([FromForm] UploadImageRequest request)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier) ??
                          User.FindFirstValue(JwtRegisteredClaimNames.Sub);
@@ -241,17 +242,17 @@ namespace BackEnd.Controllers
             if (user == null)
                 return NotFound();
 
-            if (file == null || file.Length == 0)
+            if (request.Image == null || request.Image.Length == 0)
                 return BadRequest("No file uploaded.");
 
             var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
             Directory.CreateDirectory(uploadsFolder);
-            var fileName = $"{Guid.NewGuid()}_{file.FileName}";
+            var fileName = $"{Guid.NewGuid()}_{request.Image.FileName}";
             var filePath = Path.Combine(uploadsFolder, fileName);
 
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
-                await file.CopyToAsync(stream);
+                await request.Image.CopyToAsync(stream);
             }
 
             // Optionally: delete old image file if exists
