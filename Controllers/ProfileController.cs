@@ -362,5 +362,207 @@ namespace BackEnd.Controllers
                 portfolios = portfolios.Select(p => p.ToPortfolioDto(baseUrl))
             });
         }
+
+        [HttpDelete("delete-user")]
+        [Authorize]
+        public async Task<IActionResult> DeleteUser()
+        {
+            try
+            {
+                _logger.LogInformation("DeleteUser endpoint called");
+
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier) ??
+                           User.FindFirstValue(JwtRegisteredClaimNames.Sub);
+
+                if (userId == null)
+                {
+                    _logger.LogWarning("DeleteUser: User ID not found in token");
+                    return Unauthorized("User not authenticated");
+                }
+
+                return await DeleteUserById(userId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "DeleteUser: Unexpected error occurred");
+                return StatusCode(500, new { Error = "Internal server error", Message = ex.Message });
+            }
+        }
+
+        [HttpDelete("admin/delete-user/{userId}")]
+        [Authorize]
+        public async Task<IActionResult> DeleteUserById(string userId)
+        {
+            try
+            {
+                _logger.LogInformation($"DeleteUserById endpoint called for user {userId}");
+
+                if (string.IsNullOrEmpty(userId))
+                {
+                    _logger.LogWarning("DeleteUserById: User ID is null or empty");
+                    return BadRequest("User ID is required");
+                }
+
+                _logger.LogInformation($"DeleteUserById: Starting deletion process for user {userId}");
+
+                // Get user with all related data
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user == null)
+                {
+                    _logger.LogWarning($"DeleteUserById: User with ID {userId} not found");
+                    return NotFound("User not found");
+                }
+
+                // Get all portfolios associated with this user
+                var userPortfolios = await _context.AppUserPortfolios
+                    .Where(ap => ap.AppUserId == userId)
+                    .Include(ap => ap.Portfolio)
+                        .ThenInclude(p => p.PortfolioImages)
+                    .Include(ap => ap.Portfolio)
+                        .ThenInclude(p => p.AppUserPortfolios)
+                    .ToListAsync();
+
+                _logger.LogInformation($"DeleteUserById: Found {userPortfolios.Count} portfolio associations for user {userId}");
+
+                // Delete all portfolio images and their files
+                foreach (var userPortfolio in userPortfolios)
+                {
+                    var portfolio = userPortfolio.Portfolio;
+                    if (portfolio?.PortfolioImages != null)
+                    {
+                        foreach (var image in portfolio.PortfolioImages)
+                        {
+                            // Delete image file from filesystem
+                            if (!string.IsNullOrEmpty(image.ImageUrl))
+                            {
+                                try
+                                {
+                                    var imagePath = image.ImageUrl.Replace($"{Request.Scheme}://{Request.Host}", "");
+                                    var fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", imagePath.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString()));
+
+                                    if (System.IO.File.Exists(fullPath))
+                                    {
+                                        System.IO.File.Delete(fullPath);
+                                        _logger.LogInformation($"DeleteUserById: Deleted image file {fullPath}");
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    _logger.LogWarning(ex, $"DeleteUserById: Failed to delete image file for {image.ImageUrl}");
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Delete user's profile image file
+                if (!string.IsNullOrEmpty(user.UserImg))
+                {
+                    try
+                    {
+                        var profileImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", user.UserImg.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString()));
+                        if (System.IO.File.Exists(profileImagePath))
+                        {
+                            System.IO.File.Delete(profileImagePath);
+                            _logger.LogInformation($"DeleteUserById: Deleted user profile image {profileImagePath}");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogWarning(ex, $"DeleteUserById: Failed to delete user profile image {user.UserImg}");
+                    }
+                }
+
+                // Delete user's CV file if exists
+                if (!string.IsNullOrEmpty(user.CVUrl))
+                {
+                    try
+                    {
+                        var cvPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", user.CVUrl.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString()));
+                        if (System.IO.File.Exists(cvPath))
+                        {
+                            System.IO.File.Delete(cvPath);
+                            _logger.LogInformation($"DeleteUserById: Deleted user CV file {cvPath}");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogWarning(ex, $"DeleteUserById: Failed to delete user CV file {user.CVUrl}");
+                    }
+                }
+
+                // Start database transaction to ensure data consistency
+                using (var transaction = await _context.Database.BeginTransactionAsync())
+                {
+                    try
+                    {
+                        // Delete all portfolio images from database
+                        var portfolioImageIds = userPortfolios
+                            .Where(up => up.Portfolio?.PortfolioImages != null)
+                            .SelectMany(up => up.Portfolio.PortfolioImages.Select(pi => pi.Id))
+                            .ToList();
+
+                        if (portfolioImageIds.Any())
+                        {
+                            var portfolioImages = await _context.PortfolioImages
+                                .Where(pi => portfolioImageIds.Contains(pi.Id))
+                                .ToListAsync();
+
+                            _context.PortfolioImages.RemoveRange(portfolioImages);
+                            _logger.LogInformation($"DeleteUserById: Removed {portfolioImages.Count} portfolio images from database");
+                        }
+
+                        // Delete all user-portfolio associations
+                        var userPortfolioAssociations = await _context.AppUserPortfolios
+                            .Where(ap => ap.AppUserId == userId)
+                            .ToListAsync();
+
+                        _context.AppUserPortfolios.RemoveRange(userPortfolioAssociations);
+                        _logger.LogInformation($"DeleteUserById: Removed {userPortfolioAssociations.Count} user-portfolio associations");
+
+                        // Delete all portfolios owned by this user
+                        var portfoliosToDelete = userPortfolios
+                            .Where(up => up.Portfolio != null)
+                            .Select(up => up.Portfolio)
+                            .ToList();
+
+                        if (portfoliosToDelete.Any())
+                        {
+                            _context.Portfolios.RemoveRange(portfoliosToDelete);
+                            _logger.LogInformation($"DeleteUserById: Removed {portfoliosToDelete.Count} portfolios from database");
+                        }
+
+                        // Save changes for portfolio-related deletions
+                        await _context.SaveChangesAsync();
+
+                        // Delete the user account from Identity system
+                        var deleteResult = await _userManager.DeleteAsync(user);
+                        if (!deleteResult.Succeeded)
+                        {
+                            _logger.LogError($"DeleteUserById: Failed to delete user account. Errors: {string.Join(", ", deleteResult.Errors.Select(e => e.Description))}");
+                            await transaction.RollbackAsync();
+                            return BadRequest(new { Errors = deleteResult.Errors.Select(e => e.Description) });
+                        }
+
+                        // Commit the transaction
+                        await transaction.CommitAsync();
+                        _logger.LogInformation($"DeleteUserById: Successfully deleted user {userId} and all related data");
+
+                        return Ok(new { Message = "User and all related data deleted successfully" });
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, $"DeleteUserById: Error during database transaction for user {userId}");
+                        await transaction.RollbackAsync();
+                        return StatusCode(500, new { Error = "Failed to delete user data", Message = ex.Message });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"DeleteUserById: Unexpected error occurred for user {userId}");
+                return StatusCode(500, new { Error = "Internal server error", Message = ex.Message });
+            }
+        }
     }
 }
