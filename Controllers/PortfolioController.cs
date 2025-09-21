@@ -71,7 +71,7 @@ namespace BackEnd.Controllers
         }
 
         _logger.LogInformation($"CreatePortfolio: Creating portfolio for user {userId}");
-        _logger.LogInformation($"CreatePortfolio: DTO data - Title: {dto.Title}, Description: {dto.Description}, Type: {dto.Type}");
+        _logger.LogInformation($"CreatePortfolio: DTO data - EnTitle: {dto.EnTitle}, ArTitle: {dto.ArTitle}, EnDescription: {dto.EnDescription}, ArDescription: {dto.ArDescription}, Type: {dto.Type}");
 
         // Parse the PortfolioData if it's a string
         DateTime portfolioData;
@@ -100,8 +100,10 @@ namespace BackEnd.Controllers
 
         var portfolio = new Portfolio
         {
-          Name = dto.Title ?? string.Empty,
-          Description = dto.Description ?? string.Empty,
+          EnTitle = dto.EnTitle ?? string.Empty,
+          ArTitle = dto.ArTitle ?? string.Empty,
+          EnDescription = dto.EnDescription ?? string.Empty,
+          ArDescription = dto.ArDescription ?? string.Empty,
           PortfolioLink = dto.PortfolioLink ?? string.Empty,
           BehanceLink = dto.BehanceLink ?? string.Empty,
           YoutubeLink = dto.YoutubeLink ?? string.Empty,
@@ -112,7 +114,7 @@ namespace BackEnd.Controllers
           Type = dto.Type ?? string.Empty
         };
 
-        _logger.LogInformation($"CreatePortfolio: Portfolio object created - Name: {portfolio.Name}, Type: {portfolio.Type}");
+        _logger.LogInformation($"CreatePortfolio: Portfolio object created - EnTitle: {portfolio.EnTitle}, ArTitle: {portfolio.ArTitle}, Type: {portfolio.Type}");
 
         try
         {
@@ -326,8 +328,10 @@ namespace BackEnd.Controllers
         }
 
         // Update basic info
-        portfolio.Name = dto.Title ?? portfolio.Name;
-        portfolio.Description = dto.Description ?? portfolio.Description;
+        portfolio.EnTitle = dto.EnTitle ?? portfolio.EnTitle;
+        portfolio.ArTitle = dto.ArTitle ?? portfolio.ArTitle;
+        portfolio.EnDescription = dto.EnDescription ?? portfolio.EnDescription;
+        portfolio.ArDescription = dto.ArDescription ?? portfolio.ArDescription;
         portfolio.PortfolioLink = dto.PortfolioLink ?? portfolio.PortfolioLink;
         portfolio.BehanceLink = dto.BehanceLink ?? portfolio.BehanceLink;
         portfolio.YoutubeLink = dto.YoutubeLink ?? portfolio.YoutubeLink;

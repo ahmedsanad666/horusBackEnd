@@ -9,8 +9,10 @@ namespace BackEnd.Dtos.Portfolio
     public class PortfolioDto
     {
         public int Id { get; set; }
-        public String Name { get; set; } = String.Empty;
-        public String Description { get; set; } = String.Empty;
+        public String EnTitle { get; set; } = String.Empty;
+        public String ArTitle { get; set; } = String.Empty;
+        public String EnDescription { get; set; } = String.Empty;
+        public String ArDescription { get; set; } = String.Empty;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         public bool Status { get; set; } = true;
@@ -27,8 +29,10 @@ namespace BackEnd.Dtos.Portfolio
 
     public class PortfolioCreateDto
     {
-        public string Title { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
+        public string EnTitle { get; set; } = string.Empty;
+        public string ArTitle { get; set; } = string.Empty;
+        public string EnDescription { get; set; } = string.Empty;
+        public string ArDescription { get; set; } = string.Empty;
         public string PortfolioLink { get; set; } = string.Empty;
         public string BehanceLink { get; set; } = string.Empty;
         public string YoutubeLink { get; set; } = string.Empty;
@@ -47,8 +51,10 @@ namespace BackEnd.Dtos.Portfolio
 
     public class PortfolioUpdateDto
     {
-        public string Title { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
+        public string EnTitle { get; set; } = string.Empty;
+        public string ArTitle { get; set; } = string.Empty;
+        public string EnDescription { get; set; } = string.Empty;
+        public string ArDescription { get; set; } = string.Empty;
         public string PortfolioLink { get; set; } = string.Empty;
         public string BehanceLink { get; set; } = string.Empty;
         public string YoutubeLink { get; set; } = string.Empty;

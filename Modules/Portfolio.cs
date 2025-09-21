@@ -8,8 +8,10 @@ namespace BackEnd.Modules
     public class Portfolio
     {
         public int Id { get; set; }
-        public String Name { get; set; } = String.Empty;
-        public String Description { get; set; } = String.Empty;
+        public String EnTitle { get; set; } = String.Empty;
+        public String ArTitle { get; set; } = String.Empty;
+        public String EnDescription { get; set; } = String.Empty;
+        public String ArDescription { get; set; } = String.Empty;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         public bool Status { get; set; } = true;

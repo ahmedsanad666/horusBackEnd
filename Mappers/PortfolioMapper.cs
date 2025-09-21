@@ -10,13 +10,15 @@ namespace BackEnd.Mappers
 {
     public static class PortfolioMapper
     {
-        public static PortfolioDto ToPortfolioDto(this Portfolio portfolioModel, string baseUrl = null)
+        public static PortfolioDto ToPortfolioDto(this Portfolio portfolioModel, string? baseUrl = null)
         {
             return new PortfolioDto
             {
                 Id = portfolioModel.Id,
-                Name = portfolioModel.Name,
-                Description = portfolioModel.Description,
+                EnTitle = portfolioModel.EnTitle,
+                ArTitle = portfolioModel.ArTitle,
+                EnDescription = portfolioModel.EnDescription,
+                ArDescription = portfolioModel.ArDescription,
                 CreatedAt = portfolioModel.CreatedAt,
                 Status = portfolioModel.Status,
                 PortfolioData = portfolioModel.PortfolioData,
@@ -24,18 +26,18 @@ namespace BackEnd.Mappers
                 BehanceLink = portfolioModel.BehanceLink,
                 YoutubeLink = portfolioModel.YoutubeLink,
                 GitHubLink = portfolioModel.GitHubLink,
-                PortfolioImages = portfolioModel.PortfolioImages?.Select(pi => pi.ToPortfolioImageDto()).ToList(),
+                PortfolioImages = portfolioModel.PortfolioImages?.Select(pi => pi.ToPortfolioImageDto()).ToList() ?? new List<PortfolioImageDto>(),
                 Users = portfolioModel.AppUserPortfolios?.Where(aup => aup.AppUser != null).Select(aup => new UserDto
                 {
-                    Id = aup.AppUser.Id,
-                    UserName = aup.AppUser.UserName,
-                    Name = aup.AppUser.Name,
-                    Role = aup.AppUser.Role,
-                    UserImg = !string.IsNullOrEmpty(aup.AppUser.UserImg) && baseUrl != null ? baseUrl + aup.AppUser.UserImg : aup.AppUser.UserImg,
-                    UserTitle = aup.AppUser.UserTitle,
-                    PhoneNumber = aup.AppUser.PhoneNumber,
-                    CVUrl = aup.AppUser.CVUrl
-                }).ToList(),
+                    Id = aup.AppUser!.Id,
+                    UserName = aup.AppUser.UserName ?? string.Empty,
+                    Name = aup.AppUser.Name ?? string.Empty,
+                    Role = aup.AppUser.Role ?? string.Empty,
+                    UserImg = !string.IsNullOrEmpty(aup.AppUser.UserImg) && baseUrl != null ? baseUrl + aup.AppUser.UserImg : aup.AppUser.UserImg ?? string.Empty,
+                    UserTitle = aup.AppUser.UserTitle ?? string.Empty,
+                    PhoneNumber = aup.AppUser.PhoneNumber ?? string.Empty,
+                    CVUrl = aup.AppUser.CVUrl ?? string.Empty
+                }).ToList() ?? new List<UserDto>(),
                 Type = portfolioModel.Type
             };
         }
@@ -69,8 +71,10 @@ namespace BackEnd.Mappers
 
             return new Portfolio
             {
-                Name = portfolioCreateDto.Title,
-                Description = portfolioCreateDto.Description,
+                EnTitle = portfolioCreateDto.EnTitle,
+                ArTitle = portfolioCreateDto.ArTitle,
+                EnDescription = portfolioCreateDto.EnDescription,
+                ArDescription = portfolioCreateDto.ArDescription,
                 PortfolioLink = portfolioCreateDto.PortfolioLink,
                 BehanceLink = portfolioCreateDto.BehanceLink,
                 YoutubeLink = portfolioCreateDto.YoutubeLink,
@@ -84,8 +88,10 @@ namespace BackEnd.Mappers
 
         public static Portfolio ToPortfolioFromUpdateDto(this PortfolioUpdateDto portfolioUpdateDto, Portfolio existingPortfolio)
         {
-            existingPortfolio.Name = portfolioUpdateDto.Title ?? existingPortfolio.Name;
-            existingPortfolio.Description = portfolioUpdateDto.Description ?? existingPortfolio.Description;
+            existingPortfolio.EnTitle = portfolioUpdateDto.EnTitle ?? existingPortfolio.EnTitle;
+            existingPortfolio.ArTitle = portfolioUpdateDto.ArTitle ?? existingPortfolio.ArTitle;
+            existingPortfolio.EnDescription = portfolioUpdateDto.EnDescription ?? existingPortfolio.EnDescription;
+            existingPortfolio.ArDescription = portfolioUpdateDto.ArDescription ?? existingPortfolio.ArDescription;
             existingPortfolio.PortfolioLink = portfolioUpdateDto.PortfolioLink ?? existingPortfolio.PortfolioLink;
             existingPortfolio.BehanceLink = portfolioUpdateDto.BehanceLink ?? existingPortfolio.BehanceLink;
             existingPortfolio.YoutubeLink = portfolioUpdateDto.YoutubeLink ?? existingPortfolio.YoutubeLink;

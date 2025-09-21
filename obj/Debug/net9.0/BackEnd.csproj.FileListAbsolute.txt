@@ -173,3 +173,4 @@ E:\horusTeck\hoursBack\BackEnd\obj\Debug\net9.0\refint\BackEnd.dll
 E:\horusTeck\hoursBack\BackEnd\obj\Debug\net9.0\BackEnd.pdb
 E:\horusTeck\hoursBack\BackEnd\obj\Debug\net9.0\BackEnd.genruntimeconfig.cache
 E:\horusTeck\hoursBack\BackEnd\obj\Debug\net9.0\ref\BackEnd.dll
+E:\horusTeck\hoursBack\BackEnd\bin\Debug\net9.0\appsettings.Testing.json
