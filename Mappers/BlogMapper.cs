@@ -17,6 +17,7 @@ public static class BlogMapper
         {
             Id = blog.Id,
             Slug = blog.Slug,
+            OriginalLanguage = blog.OriginalLanguage,
             Title = title,
             Description = desc,
             Content = content,
@@ -84,6 +85,7 @@ public static class BlogMapper
         {
             Id = category.Id,
             Slug = category.Slug,
+            OriginalLanguage = category.OriginalLanguage,
             Name = PickLocalized(ar, category.NameAr, category.NameEn),
             Lang = ar ? "ar" : "en"
         };

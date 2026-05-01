@@ -22,6 +22,8 @@ public class BlogPublicDto
 {
     public int Id { get; set; }
     public string Slug { get; set; } = string.Empty;
+    /// <summary>Author input language for title/description/content (en or ar).</summary>
+    public string OriginalLanguage { get; set; } = "en";
     public string Title { get; set; } = string.Empty;
     public string? Description { get; set; }
     public string Content { get; set; } = string.Empty;
@@ -35,7 +37,6 @@ public class BlogPublicDto
 
 public class BlogAdminDto : BlogPublicDto
 {
-    public string OriginalLanguage { get; set; } = "en";
     public string TitleEn { get; set; } = string.Empty;
     public string TitleAr { get; set; } = string.Empty;
     public string? DescriptionEn { get; set; }
