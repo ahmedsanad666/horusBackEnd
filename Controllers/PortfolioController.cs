@@ -111,7 +111,10 @@ namespace BackEnd.Controllers
           PortfolioData = portfolioData,
           CreatedAt = DateTime.UtcNow,
           Status = true,
-          Type = dto.Type ?? string.Empty
+          Type = dto.Type ?? string.Empty,
+          ThumbnailUrl = string.IsNullOrWhiteSpace(dto.ThumbnailUrl)
+              ? null
+              : dto.ThumbnailUrl
         };
 
         _logger.LogInformation($"CreatePortfolio: Portfolio object created - EnTitle: {portfolio.EnTitle}, ArTitle: {portfolio.ArTitle}, Type: {portfolio.Type}");
@@ -184,7 +187,8 @@ namespace BackEnd.Controllers
           }
 
           _logger.LogInformation("CreatePortfolio: Portfolio created successfully");
-          return Ok(portfolioWithData.ToPortfolioDto());
+          var createBaseUrl = $"{Request.Scheme}://{Request.Host}";
+          return Ok(portfolioWithData.ToPortfolioDto(createBaseUrl));
         }
         catch (Exception reloadEx)
         {
@@ -385,6 +389,100 @@ namespace BackEnd.Controllers
       }
     }
 
+    [HttpPut("{id:int}/thumbnail")]
+    [Authorize]
+    public async Task<IActionResult> SetPortfolioThumbnail(int id, [FromForm] PortfolioImageCreateDto dto)
+    {
+      try
+      {
+        _logger.LogInformation($"SetPortfolioThumbnail: Updating thumbnail for portfolio {id}");
+
+        var portfolio = await _context.Portfolios.FindAsync(id);
+        if (portfolio == null)
+        {
+          _logger.LogWarning($"SetPortfolioThumbnail: Portfolio with ID {id} not found");
+          return NotFound("Portfolio not found");
+        }
+
+        if (dto?.ImageFile == null || dto.ImageFile.Length == 0)
+        {
+          _logger.LogWarning("SetPortfolioThumbnail: No file uploaded");
+          return BadRequest("No file was uploaded.");
+        }
+
+        var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp" };
+        var fileExtension = Path.GetExtension(dto.ImageFile.FileName).ToLowerInvariant();
+        if (!allowedExtensions.Contains(fileExtension))
+        {
+          _logger.LogWarning($"SetPortfolioThumbnail: Invalid file type {fileExtension}");
+          return BadRequest("Invalid file type. Only image files are allowed.");
+        }
+
+        TryDeletePortfolioImageFileFromDisk(portfolio.ThumbnailUrl);
+
+        var fileName = Guid.NewGuid().ToString() + fileExtension;
+        var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
+        if (!Directory.Exists(uploadPath))
+        {
+          Directory.CreateDirectory(uploadPath);
+          _logger.LogInformation($"SetPortfolioThumbnail: Created upload directory {uploadPath}");
+        }
+
+        var filePath = Path.Combine(uploadPath, fileName);
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+          await dto.ImageFile.CopyToAsync(stream);
+        }
+
+        var baseUrl = $"{Request.Scheme}://{Request.Host}";
+        portfolio.ThumbnailUrl = $"{baseUrl}/images/{fileName}";
+        await _context.SaveChangesAsync();
+
+        var portfolioWithData = await _context.Portfolios
+            .Include(p => p.PortfolioImages)
+            .Include(p => p.AppUserPortfolios)
+                .ThenInclude(aup => aup.AppUser)
+            .FirstOrDefaultAsync(p => p.Id == id);
+
+        _logger.LogInformation($"SetPortfolioThumbnail: Thumbnail updated for portfolio {id}");
+        return Ok(portfolioWithData!.ToPortfolioDto(baseUrl));
+      }
+      catch (Exception ex)
+      {
+        _logger.LogError(ex, $"SetPortfolioThumbnail: Unexpected error for portfolio {id}");
+        return StatusCode(500, new { error = "Internal server error", message = ex.Message });
+      }
+    }
+
+    [HttpDelete("{id:int}/thumbnail")]
+    [Authorize]
+    public async Task<IActionResult> DeletePortfolioThumbnail(int id)
+    {
+      try
+      {
+        _logger.LogInformation($"DeletePortfolioThumbnail: Removing thumbnail for portfolio {id}");
+
+        var portfolio = await _context.Portfolios.FindAsync(id);
+        if (portfolio == null)
+        {
+          _logger.LogWarning($"DeletePortfolioThumbnail: Portfolio with ID {id} not found");
+          return NotFound("Portfolio not found");
+        }
+
+        TryDeletePortfolioImageFileFromDisk(portfolio.ThumbnailUrl);
+        portfolio.ThumbnailUrl = null;
+        await _context.SaveChangesAsync();
+
+        _logger.LogInformation($"DeletePortfolioThumbnail: Thumbnail removed for portfolio {id}");
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        _logger.LogError(ex, $"DeletePortfolioThumbnail: Unexpected error for portfolio {id}");
+        return StatusCode(500, new { error = "Internal server error", message = ex.Message });
+      }
+    }
+
     [HttpDelete("{id}")]
     [Authorize]
     public async Task<IActionResult> DeletePortfolio(int id)
@@ -403,6 +501,10 @@ namespace BackEnd.Controllers
           _logger.LogWarning($"DeletePortfolio: Portfolio with ID {id} not found");
           return NotFound("Portfolio not found");
         }
+
+        TryDeletePortfolioImageFileFromDisk(portfolio.ThumbnailUrl);
+        foreach (var img in portfolio.PortfolioImages)
+          TryDeletePortfolioImageFileFromDisk(img.ImageUrl);
 
         // Remove all related entities
         _context.PortfolioImages.RemoveRange(portfolio.PortfolioImages);
@@ -511,6 +613,94 @@ namespace BackEnd.Controllers
         _logger.LogError(ex, $"GetPortfolioImages: Unexpected error occurred for portfolio {portfolioId}");
         return StatusCode(500, new { error = "Internal server error", message = ex.Message });
       }
+    }
+
+    [HttpDelete("{portfolioId}/images/{imageId:int}")]
+    [Authorize]
+    public async Task<IActionResult> DeletePortfolioImage(int portfolioId, int imageId)
+    {
+      try
+      {
+        _logger.LogInformation($"DeletePortfolioImage: Removing image {imageId} from portfolio {portfolioId}");
+
+        var image = await _context.PortfolioImages
+            .FirstOrDefaultAsync(pi => pi.Id == imageId && pi.PortfolioId == portfolioId);
+
+        if (image == null)
+        {
+          _logger.LogWarning($"DeletePortfolioImage: Image {imageId} not found for portfolio {portfolioId}");
+          return NotFound("Portfolio image not found");
+        }
+
+        TryDeletePortfolioImageFileFromDisk(image.ImageUrl);
+        _context.PortfolioImages.Remove(image);
+        await _context.SaveChangesAsync();
+
+        _logger.LogInformation($"DeletePortfolioImage: Image {imageId} removed from portfolio {portfolioId}");
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        _logger.LogError(ex, $"DeletePortfolioImage: Unexpected error for portfolio {portfolioId}, image {imageId}");
+        return StatusCode(500, new { error = "Internal server error", message = ex.Message });
+      }
+    }
+
+    [HttpDelete("{portfolioId}/images")]
+    [Authorize]
+    public async Task<IActionResult> DeleteAllPortfolioImages(int portfolioId)
+    {
+      try
+      {
+        _logger.LogInformation($"DeleteAllPortfolioImages: Removing all images for portfolio {portfolioId}");
+
+        var portfolio = await _context.Portfolios.FindAsync(portfolioId);
+        if (portfolio == null)
+        {
+          _logger.LogWarning($"DeleteAllPortfolioImages: Portfolio with ID {portfolioId} not found");
+          return NotFound("Portfolio not found");
+        }
+
+        var images = await _context.PortfolioImages
+            .Where(pi => pi.PortfolioId == portfolioId)
+            .ToListAsync();
+
+        foreach (var image in images)
+          TryDeletePortfolioImageFileFromDisk(image.ImageUrl);
+
+        if (images.Count > 0)
+        {
+          _context.PortfolioImages.RemoveRange(images);
+          await _context.SaveChangesAsync();
+        }
+
+        _logger.LogInformation($"DeleteAllPortfolioImages: Removed {images.Count} image(s) from portfolio {portfolioId}");
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        _logger.LogError(ex, $"DeleteAllPortfolioImages: Unexpected error for portfolio {portfolioId}");
+        return StatusCode(500, new { error = "Internal server error", message = ex.Message });
+      }
+    }
+
+    private static void TryDeletePortfolioImageFileFromDisk(string? imageUrl)
+    {
+      if (string.IsNullOrWhiteSpace(imageUrl))
+        return;
+
+      string? fileName = null;
+      if (Uri.TryCreate(imageUrl, UriKind.Absolute, out var absoluteUri))
+        fileName = Path.GetFileName(absoluteUri.LocalPath);
+      else
+        fileName = Path.GetFileName(imageUrl.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
+
+      if (string.IsNullOrEmpty(fileName) || fileName.Contains("..", StringComparison.Ordinal))
+        return;
+
+      var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", fileName);
+      if (System.IO.File.Exists(filePath))
+        System.IO.File.Delete(filePath);
     }
   }
 }

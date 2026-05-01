@@ -25,5 +25,8 @@ namespace BackEnd.Modules
         public string YoutubeLink { get; set; }
         public string GitHubLink { get; set; }
         public string Type { get; set; }
+
+        /// <summary>Main cover image URL for cards and listings (stored under wwwroot/images).</summary>
+        public string? ThumbnailUrl { get; set; }
     }
 }

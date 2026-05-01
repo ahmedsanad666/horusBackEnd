@@ -1,0 +1,36 @@
+## Visual Studio / MSBuild
+.vs/
+*.user
+*.csproj.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Build outputs
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+[Ll]og/
+[Ll]ogs/
+
+## Publish (keep .pubxml if you want; ignore machine-specific user overrides)
+*.pubxml.user
+*.PublishSettings
+
+## NuGet
+*.nupkg
+**/packages/*
+!**/packages/build/
+
+## Rider / VS Code (optional)
+.idea/
+.vscode/
+
+## OS
+.DS_Store
+Thumbs.db
+
+## Logs & temp
+*.log
+*.tmp
+*.temp

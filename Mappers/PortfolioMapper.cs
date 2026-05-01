@@ -38,7 +38,8 @@ namespace BackEnd.Mappers
                     PhoneNumber = aup.AppUser.PhoneNumber ?? string.Empty,
                     CVUrl = aup.AppUser.CVUrl ?? string.Empty
                 }).ToList() ?? new List<UserDto>(),
-                Type = portfolioModel.Type
+                Type = portfolioModel.Type,
+                ThumbnailUrl = portfolioModel.ThumbnailUrl
             };
         }
 
@@ -82,7 +83,10 @@ namespace BackEnd.Mappers
                 PortfolioData = portfolioData,
                 Status = portfolioCreateDto.Status ?? true,
                 CreatedAt = DateTime.UtcNow,
-                Type = portfolioCreateDto.Type
+                Type = portfolioCreateDto.Type,
+                ThumbnailUrl = string.IsNullOrWhiteSpace(portfolioCreateDto.ThumbnailUrl)
+                    ? null
+                    : portfolioCreateDto.ThumbnailUrl
             };
         }
 

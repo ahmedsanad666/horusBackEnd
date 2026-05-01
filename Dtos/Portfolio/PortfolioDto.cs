@@ -25,6 +25,7 @@ namespace BackEnd.Dtos.Portfolio
         public string GitHubLink { get; set; }
         public List<UserDto> Users { get; set; }
         public string Type { get; set; }
+        public string? ThumbnailUrl { get; set; }
     }
 
     public class PortfolioCreateDto
@@ -41,6 +42,8 @@ namespace BackEnd.Dtos.Portfolio
         public bool? Status { get; set; }
         public List<string> UserIds { get; set; } = new List<string>();
         public string Type { get; set; } = string.Empty;
+        /// <summary>Optional absolute URL if thumbnail is hosted elsewhere (otherwise use PUT …/thumbnail).</summary>
+        public string? ThumbnailUrl { get; set; }
     }
 
     public class PortfolioImageDto
