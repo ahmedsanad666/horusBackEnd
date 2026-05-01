@@ -23,6 +23,7 @@ builder.WebHost.CaptureStartupErrors(true).UseSetting("detailedErrors", "true");
 // ---- Services ----
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddMemoryCache();
 
 // Swagger configuration
 builder.Services.AddSwaggerGen(c =>

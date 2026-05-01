@@ -30,6 +30,7 @@ public class BlogPublicDto
     public string? ImageUrl { get; set; }
     public string Lang { get; set; } = "en";
     public bool IsPublished { get; set; }
+    public long ViewsCount { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
     public List<BlogCategorySummaryDto> Categories { get; set; } = new();

@@ -21,6 +21,7 @@ public class Blog
 
     public bool IsTranslated { get; set; }
     public bool IsPublished { get; set; } = true;
+    public long ViewsCount { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime? UpdatedAt { get; set; }
 

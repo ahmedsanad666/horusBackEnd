@@ -24,6 +24,7 @@ public static class BlogMapper
             ImageUrl = ResolveUrl(blog.ImageUrl, baseUrl),
             Lang = resolvedLang,
             IsPublished = blog.IsPublished,
+            ViewsCount = blog.ViewsCount,
             CreatedAt = blog.CreatedAt,
             UpdatedAt = blog.UpdatedAt,
             Categories = blog.Categories?
@@ -45,6 +46,7 @@ public static class BlogMapper
             ImageUrl = ResolveUrl(blog.ImageUrl, baseUrl),
             Lang = blog.OriginalLanguage,
             IsPublished = blog.IsPublished,
+            ViewsCount = blog.ViewsCount,
             CreatedAt = blog.CreatedAt,
             UpdatedAt = blog.UpdatedAt,
             Categories = blog.Categories?

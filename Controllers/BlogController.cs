@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+using System.Text;
 using BackEnd.Data;
 using BackEnd.Dtos.Blog;
 using BackEnd.Helpers;
@@ -7,6 +9,7 @@ using BackEnd.Modules;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace BackEnd.Controllers;
 
@@ -15,18 +18,22 @@ namespace BackEnd.Controllers;
 public class BlogController : ControllerBase
 {
     private static readonly string[] AllowedImageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp"];
+    private static readonly TimeSpan ViewDedupWindow = TimeSpan.FromMinutes(30);
 
     private readonly ApplicationDBContext _context;
     private readonly IBlogService _blogService;
+    private readonly IMemoryCache _cache;
     private readonly ILogger<BlogController> _logger;
 
     public BlogController(
         ApplicationDBContext context,
         IBlogService blogService,
+        IMemoryCache cache,
         ILogger<BlogController> logger)
     {
         _context = context;
         _blogService = blogService;
+        _cache = cache;
         _logger = logger;
     }
 
@@ -251,6 +258,45 @@ public class BlogController : ControllerBase
         await _context.SaveChangesAsync();
 
         return Ok(new { success = true, data = blog.ToAdminDto(baseUrl) });
+    }
+
+    /// <summary>Register a public view for a published blog. Dedup'd per (blog + IP + UA) for 30 minutes.</summary>
+    [HttpPost("{id:int}/view")]
+    [AllowAnonymous]
+    public async Task<IActionResult> RegisterView(int id)
+    {
+        var blog = await _context.Blogs
+            .Where(b => b.Id == id && b.IsPublished)
+            .Select(b => new { b.Id, b.ViewsCount })
+            .FirstOrDefaultAsync();
+
+        if (blog == null)
+            return NotFound(new { error = "Blog not found" });
+
+        var ip = GetClientIp();
+        var ua = Request.Headers.UserAgent.ToString();
+        var fingerprint = $"{ip}|{ua}";
+        var hash = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(fingerprint)));
+        var cacheKey = $"blog:view:{id}:{hash}";
+
+        if (_cache.TryGetValue(cacheKey, out _))
+            return Ok(new { success = true, data = new { id, viewsCount = blog.ViewsCount } });
+
+        await _context.Blogs
+            .Where(b => b.Id == id)
+            .ExecuteUpdateAsync(s => s.SetProperty(b => b.ViewsCount, b => b.ViewsCount + 1));
+
+        _cache.Set(cacheKey, true, ViewDedupWindow);
+
+        return Ok(new { success = true, data = new { id, viewsCount = blog.ViewsCount + 1 } });
+    }
+
+    private string GetClientIp()
+    {
+        var fwd = Request.Headers["X-Forwarded-For"].ToString();
+        if (!string.IsNullOrWhiteSpace(fwd))
+            return fwd.Split(',')[0].Trim();
+        return HttpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
     }
 
     private static void TryDeleteBlogImageFileFromDisk(string? imageUrl)
