@@ -20,6 +20,8 @@ namespace BackEnd.Data
         public DbSet<Portfolio> Portfolios { get; set; }
         public DbSet<AppUserPortfolio> AppUserPortfolios { get; set; }
         public DbSet<PortfolioImage> PortfolioImages { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<BlogCategory> BlogCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -72,6 +74,18 @@ namespace BackEnd.Data
                 .HasOne(pi => pi.Portfolio)
                 .WithMany(p => p.PortfolioImages)
                 .HasForeignKey(pi => pi.PortfolioId);
+
+            builder.Entity<Blog>()
+                .HasIndex(b => b.Slug)
+                .IsUnique();
+
+            builder.Entity<BlogCategory>()
+                .HasIndex(c => c.Slug)
+                .IsUnique();
+
+            builder.Entity<Blog>()
+                .HasMany(b => b.Categories)
+                .WithMany(c => c.Blogs);
 
             // Additional configurations if needed
         }

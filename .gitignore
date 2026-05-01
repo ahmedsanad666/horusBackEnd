@@ -34,3 +34,13 @@ Thumbs.db
 *.log
 *.tmp
 *.temp
+
+## App configuration secrets (never commit real keys/connection strings)
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Staging.json
+appsettings.Testing.json
+
+## Local tooling / secrets
+secrets.json
+**/*secrets*.json
