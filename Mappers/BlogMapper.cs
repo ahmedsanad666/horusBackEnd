@@ -7,11 +7,10 @@ public static class BlogMapper
 {
     public static BlogPublicDto ToPublicDto(this Blog blog, string lang, string? baseUrl)
     {
-        var ar = lang.StartsWith("ar", StringComparison.OrdinalIgnoreCase);
-        var title = PickLocalized(ar, blog.TitleAr, blog.TitleEn);
-        var desc = PickLocalizedNullable(ar, blog.DescriptionAr, blog.DescriptionEn);
-        var content = PickLocalized(ar, blog.ContentAr, blog.ContentEn);
-        var resolvedLang = ar ? "ar" : "en";
+        var resolvedLang = ResolvePublicLangCode(lang);
+        var title = PickForLang(lang, blog.TitleEn, blog.TitleAr, blog.TitleTr);
+        var desc = PickForLangNullable(lang, blog.DescriptionEn, blog.DescriptionAr, blog.DescriptionTr);
+        var content = PickForLang(lang, blog.ContentEn, blog.ContentAr, blog.ContentTr);
 
         return new BlogPublicDto
         {
@@ -29,7 +28,7 @@ public static class BlogMapper
             UpdatedAt = blog.UpdatedAt,
             Categories = blog.Categories?
                 .OrderBy(c => c.Slug)
-                .Select(c => c.ToSummaryDto(resolvedLang))
+                .Select(c => c.ToSummaryDto(lang))
                 .ToList() ?? new List<BlogCategorySummaryDto>()
         };
     }
@@ -61,35 +60,36 @@ public static class BlogMapper
             OriginalLanguage = blog.OriginalLanguage,
             TitleEn = blog.TitleEn,
             TitleAr = blog.TitleAr,
+            TitleTr = blog.TitleTr,
             DescriptionEn = blog.DescriptionEn,
             DescriptionAr = blog.DescriptionAr,
+            DescriptionTr = blog.DescriptionTr,
             ContentEn = blog.ContentEn,
             ContentAr = blog.ContentAr,
+            ContentTr = blog.ContentTr,
             IsTranslated = blog.IsTranslated
         };
     }
 
     public static BlogCategorySummaryDto ToSummaryDto(this BlogCategory category, string lang)
     {
-        var ar = lang.StartsWith("ar", StringComparison.OrdinalIgnoreCase);
         return new BlogCategorySummaryDto
         {
             Id = category.Id,
             Slug = category.Slug,
-            Name = PickLocalized(ar, category.NameAr, category.NameEn)
+            Name = PickForLang(lang, category.NameEn, category.NameAr, category.NameTr)
         };
     }
 
     public static BlogCategoryPublicDto ToCategoryPublicDto(this BlogCategory category, string lang)
     {
-        var ar = lang.StartsWith("ar", StringComparison.OrdinalIgnoreCase);
         return new BlogCategoryPublicDto
         {
             Id = category.Id,
             Slug = category.Slug,
             OriginalLanguage = category.OriginalLanguage,
-            Name = PickLocalized(ar, category.NameAr, category.NameEn),
-            Lang = ar ? "ar" : "en"
+            Name = PickForLang(lang, category.NameEn, category.NameAr, category.NameTr),
+            Lang = ResolvePublicLangCode(lang)
         };
     }
 
@@ -106,25 +106,50 @@ public static class BlogMapper
             OriginalLanguage = category.OriginalLanguage,
             NameEn = category.NameEn,
             NameAr = category.NameAr,
+            NameTr = category.NameTr,
             IsTranslated = category.IsTranslated,
             CreatedAt = category.CreatedAt,
             UpdatedAt = category.UpdatedAt
         };
     }
 
-    private static string PickLocalized(bool preferAr, string arValue, string enValue)
+    /// <summary>Normalized lang tag for API consumers (en, ar, or tr).</summary>
+    private static string ResolvePublicLangCode(string lang)
     {
-        if (preferAr)
-            return string.IsNullOrWhiteSpace(arValue) ? enValue : arValue;
-        return string.IsNullOrWhiteSpace(enValue) ? arValue : enValue;
+        var l = (lang ?? "en").Trim().ToLowerInvariant();
+        if (l.StartsWith("ar", StringComparison.OrdinalIgnoreCase))
+            return "ar";
+        if (l.StartsWith("tr", StringComparison.OrdinalIgnoreCase))
+            return "tr";
+        return "en";
     }
 
-    private static string? PickLocalizedNullable(bool preferAr, string? arValue, string? enValue)
+    private static string PickForLang(string lang, string enValue, string arValue, string trValue)
     {
-        var primary = preferAr ? arValue : enValue;
-        var fallback = preferAr ? enValue : arValue;
-        var chosen = string.IsNullOrWhiteSpace(primary) ? fallback : primary;
-        return string.IsNullOrWhiteSpace(chosen) ? null : chosen;
+        var l = (lang ?? "en").Trim().ToLowerInvariant();
+        if (l.StartsWith("ar", StringComparison.OrdinalIgnoreCase))
+        {
+            if (!string.IsNullOrWhiteSpace(arValue)) return arValue;
+            if (!string.IsNullOrWhiteSpace(enValue)) return enValue;
+            return trValue;
+        }
+
+        if (l.StartsWith("tr", StringComparison.OrdinalIgnoreCase))
+        {
+            if (!string.IsNullOrWhiteSpace(trValue)) return trValue;
+            if (!string.IsNullOrWhiteSpace(enValue)) return enValue;
+            return arValue;
+        }
+
+        if (!string.IsNullOrWhiteSpace(enValue)) return enValue;
+        if (!string.IsNullOrWhiteSpace(arValue)) return arValue;
+        return trValue;
+    }
+
+    private static string? PickForLangNullable(string lang, string? enValue, string? arValue, string? trValue)
+    {
+        var s = PickForLang(lang, enValue ?? "", arValue ?? "", trValue ?? "");
+        return string.IsNullOrWhiteSpace(s) ? null : s;
     }
 
     private static string? ResolveUrl(string? url, string? baseUrl)

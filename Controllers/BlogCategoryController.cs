@@ -28,6 +28,7 @@ public class BlogCategoryController : ControllerBase
         _logger = logger;
     }
 
+    /// <param name="lang">Locale for category names: en, ar, or tr.</param>
     [HttpGet]
     [AllowAnonymous]
     public async Task<IActionResult> GetAll([FromQuery] string lang = "en")
@@ -43,6 +44,7 @@ public class BlogCategoryController : ControllerBase
         });
     }
 
+    /// <param name="lang">Locale for category name: en, ar, or tr.</param>
     [HttpGet("{id:int}")]
     [AllowAnonymous]
     public async Task<IActionResult> GetById(int id, [FromQuery] string lang = "en")

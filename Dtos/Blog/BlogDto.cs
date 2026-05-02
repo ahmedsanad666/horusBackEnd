@@ -8,7 +8,7 @@ public class BlogCreateDto
     /// <summary>Optional; generated from title when omitted.</summary>
     public string? Slug { get; set; }
     public string? ImageUrl { get; set; }
-    /// <summary>Author language: en or ar.</summary>
+    /// <summary>Author language: en, ar, or tr.</summary>
     public string? OriginalLanguage { get; set; }
     public bool IsPublished { get; set; } = true;
     public List<int> CategoryIds { get; set; } = new();
@@ -22,7 +22,7 @@ public class BlogPublicDto
 {
     public int Id { get; set; }
     public string Slug { get; set; } = string.Empty;
-    /// <summary>Author input language for title/description/content (en or ar).</summary>
+    /// <summary>Author/source language of the post (en, ar, or tr).</summary>
     public string OriginalLanguage { get; set; } = "en";
     public string Title { get; set; } = string.Empty;
     public string? Description { get; set; }
@@ -40,10 +40,13 @@ public class BlogAdminDto : BlogPublicDto
 {
     public string TitleEn { get; set; } = string.Empty;
     public string TitleAr { get; set; } = string.Empty;
+    public string TitleTr { get; set; } = string.Empty;
     public string? DescriptionEn { get; set; }
     public string? DescriptionAr { get; set; }
+    public string? DescriptionTr { get; set; }
     public string ContentEn { get; set; } = string.Empty;
     public string ContentAr { get; set; } = string.Empty;
+    public string ContentTr { get; set; } = string.Empty;
     public bool IsTranslated { get; set; }
 }
 

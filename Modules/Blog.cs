@@ -1,6 +1,6 @@
 namespace BackEnd.Modules;
 
-/// <summary>Blog post with original fields + EN/AR columns populated on create/update (DeepL).</summary>
+/// <summary>Blog post with original fields + EN/AR/TR columns populated on create/update (DeepL).</summary>
 public class Blog
 {
     public int Id { get; set; }
@@ -14,10 +14,13 @@ public class Blog
 
     public string TitleEn { get; set; } = string.Empty;
     public string TitleAr { get; set; } = string.Empty;
+    public string TitleTr { get; set; } = string.Empty;
     public string? DescriptionEn { get; set; }
     public string? DescriptionAr { get; set; }
+    public string? DescriptionTr { get; set; }
     public string ContentEn { get; set; } = string.Empty;
     public string ContentAr { get; set; } = string.Empty;
+    public string ContentTr { get; set; } = string.Empty;
 
     public bool IsTranslated { get; set; }
     public bool IsPublished { get; set; } = true;

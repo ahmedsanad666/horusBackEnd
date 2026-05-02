@@ -10,8 +10,13 @@ namespace BackEnd.Modules
         public int Id { get; set; }
         public String EnTitle { get; set; } = String.Empty;
         public String ArTitle { get; set; } = String.Empty;
+        public String TrTitle { get; set; } = String.Empty;
         public String EnDescription { get; set; } = String.Empty;
         public String ArDescription { get; set; } = String.Empty;
+        public String TrDescription { get; set; } = String.Empty;
+        /// <summary>Author/source language for title & description (en, ar, tr). Other locales filled via DeepL.</summary>
+        public string OriginalLanguage { get; set; } = "en";
+        public bool IsTranslated { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         public bool Status { get; set; } = true;

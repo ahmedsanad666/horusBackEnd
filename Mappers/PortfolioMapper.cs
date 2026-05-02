@@ -17,8 +17,12 @@ namespace BackEnd.Mappers
                 Id = portfolioModel.Id,
                 EnTitle = portfolioModel.EnTitle,
                 ArTitle = portfolioModel.ArTitle,
+                TrTitle = portfolioModel.TrTitle,
                 EnDescription = portfolioModel.EnDescription,
                 ArDescription = portfolioModel.ArDescription,
+                TrDescription = portfolioModel.TrDescription,
+                OriginalLanguage = portfolioModel.OriginalLanguage,
+                IsTranslated = portfolioModel.IsTranslated,
                 CreatedAt = portfolioModel.CreatedAt,
                 Status = portfolioModel.Status,
                 PortfolioData = portfolioModel.PortfolioData,
@@ -74,8 +78,13 @@ namespace BackEnd.Mappers
             {
                 EnTitle = portfolioCreateDto.EnTitle,
                 ArTitle = portfolioCreateDto.ArTitle,
+                TrTitle = portfolioCreateDto.TrTitle,
                 EnDescription = portfolioCreateDto.EnDescription,
                 ArDescription = portfolioCreateDto.ArDescription,
+                TrDescription = portfolioCreateDto.TrDescription,
+                OriginalLanguage = string.IsNullOrWhiteSpace(portfolioCreateDto.OriginalLanguage)
+                    ? "en"
+                    : portfolioCreateDto.OriginalLanguage.Trim(),
                 PortfolioLink = portfolioCreateDto.PortfolioLink,
                 BehanceLink = portfolioCreateDto.BehanceLink,
                 YoutubeLink = portfolioCreateDto.YoutubeLink,
@@ -94,8 +103,12 @@ namespace BackEnd.Mappers
         {
             existingPortfolio.EnTitle = portfolioUpdateDto.EnTitle ?? existingPortfolio.EnTitle;
             existingPortfolio.ArTitle = portfolioUpdateDto.ArTitle ?? existingPortfolio.ArTitle;
+            existingPortfolio.TrTitle = portfolioUpdateDto.TrTitle ?? existingPortfolio.TrTitle;
             existingPortfolio.EnDescription = portfolioUpdateDto.EnDescription ?? existingPortfolio.EnDescription;
             existingPortfolio.ArDescription = portfolioUpdateDto.ArDescription ?? existingPortfolio.ArDescription;
+            existingPortfolio.TrDescription = portfolioUpdateDto.TrDescription ?? existingPortfolio.TrDescription;
+            if (!string.IsNullOrWhiteSpace(portfolioUpdateDto.OriginalLanguage))
+                existingPortfolio.OriginalLanguage = portfolioUpdateDto.OriginalLanguage.Trim();
             existingPortfolio.PortfolioLink = portfolioUpdateDto.PortfolioLink ?? existingPortfolio.PortfolioLink;
             existingPortfolio.BehanceLink = portfolioUpdateDto.BehanceLink ?? existingPortfolio.BehanceLink;
             existingPortfolio.YoutubeLink = portfolioUpdateDto.YoutubeLink ?? existingPortfolio.YoutubeLink;

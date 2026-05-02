@@ -1,6 +1,6 @@
 namespace BackEnd.Modules;
 
-/// <summary>Blog category with bilingual display names (filled on write via DeepL).</summary>
+/// <summary>Blog category with EN/AR/TR display names (filled on write via DeepL).</summary>
 public class BlogCategory
 {
     public int Id { get; set; }
@@ -10,6 +10,7 @@ public class BlogCategory
     public string OriginalLanguage { get; set; } = "en";
     public string NameEn { get; set; } = string.Empty;
     public string NameAr { get; set; } = string.Empty;
+    public string NameTr { get; set; } = string.Empty;
     public bool IsTranslated { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime? UpdatedAt { get; set; }

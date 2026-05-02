@@ -29,20 +29,46 @@ public class BlogService : IBlogService
                 blog.DescriptionEn = blog.Description;
                 blog.TitleAr = await _translation.TranslateAsync(blog.Title, "AR");
                 blog.ContentAr = await _translation.TranslateAsync(blog.Content, "AR");
+                blog.TitleTr = await _translation.TranslateAsync(blog.Title, "TR");
+                blog.ContentTr = await _translation.TranslateAsync(blog.Content, "TR");
                 blog.DescriptionAr = string.IsNullOrWhiteSpace(blog.Description)
                     ? null
                     : await _translation.TranslateAsync(blog.Description!, "AR");
+                blog.DescriptionTr = string.IsNullOrWhiteSpace(blog.Description)
+                    ? null
+                    : await _translation.TranslateAsync(blog.Description!, "TR");
             }
-            else
+            else if (lang == "ar")
             {
                 blog.TitleAr = blog.Title;
                 blog.ContentAr = blog.Content;
                 blog.DescriptionAr = blog.Description;
                 blog.TitleEn = await _translation.TranslateAsync(blog.Title, "EN-US");
                 blog.ContentEn = await _translation.TranslateAsync(blog.Content, "EN-US");
+                blog.TitleTr = await _translation.TranslateAsync(blog.Title, "TR");
+                blog.ContentTr = await _translation.TranslateAsync(blog.Content, "TR");
                 blog.DescriptionEn = string.IsNullOrWhiteSpace(blog.Description)
                     ? null
                     : await _translation.TranslateAsync(blog.Description!, "EN-US");
+                blog.DescriptionTr = string.IsNullOrWhiteSpace(blog.Description)
+                    ? null
+                    : await _translation.TranslateAsync(blog.Description!, "TR");
+            }
+            else
+            {
+                blog.TitleTr = blog.Title;
+                blog.ContentTr = blog.Content;
+                blog.DescriptionTr = blog.Description;
+                blog.TitleEn = await _translation.TranslateAsync(blog.Title, "EN-US");
+                blog.ContentEn = await _translation.TranslateAsync(blog.Content, "EN-US");
+                blog.TitleAr = await _translation.TranslateAsync(blog.Title, "AR");
+                blog.ContentAr = await _translation.TranslateAsync(blog.Content, "AR");
+                blog.DescriptionEn = string.IsNullOrWhiteSpace(blog.Description)
+                    ? null
+                    : await _translation.TranslateAsync(blog.Description!, "EN-US");
+                blog.DescriptionAr = string.IsNullOrWhiteSpace(blog.Description)
+                    ? null
+                    : await _translation.TranslateAsync(blog.Description!, "AR");
             }
 
             blog.IsTranslated = true;
@@ -65,11 +91,19 @@ public class BlogService : IBlogService
             {
                 category.NameEn = category.Name;
                 category.NameAr = await _translation.TranslateAsync(category.Name, "AR");
+                category.NameTr = await _translation.TranslateAsync(category.Name, "TR");
             }
-            else
+            else if (lang == "ar")
             {
                 category.NameAr = category.Name;
                 category.NameEn = await _translation.TranslateAsync(category.Name, "EN-US");
+                category.NameTr = await _translation.TranslateAsync(category.Name, "TR");
+            }
+            else
+            {
+                category.NameTr = category.Name;
+                category.NameEn = await _translation.TranslateAsync(category.Name, "EN-US");
+                category.NameAr = await _translation.TranslateAsync(category.Name, "AR");
             }
 
             category.IsTranslated = true;
@@ -86,6 +120,10 @@ public class BlogService : IBlogService
         if (string.IsNullOrWhiteSpace(value))
             return "en";
         var v = value.Trim().ToLowerInvariant();
-        return v.StartsWith("ar", StringComparison.Ordinal) ? "ar" : "en";
+        if (v.StartsWith("ar", StringComparison.Ordinal))
+            return "ar";
+        if (v.StartsWith("tr", StringComparison.Ordinal))
+            return "tr";
+        return "en";
     }
 }

@@ -122,6 +122,7 @@ builder.Services.AddScoped<IPortfolioRepository, PortfolioRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddSingleton<ITranslationService, TranslationService>();
 builder.Services.AddScoped<IBlogService, BlogService>();
+builder.Services.AddScoped<IPortfolioTranslationService, PortfolioTranslationService>();
 
 // CORS
 var corsOrigins = (builder.Configuration["CORS__Origins"] ?? "")

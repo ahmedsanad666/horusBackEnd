@@ -37,6 +37,7 @@ public class BlogController : ControllerBase
         _logger = logger;
     }
 
+    /// <param name="lang">Locale for returned strings: en, ar, or tr (falls back to other stored translations).</param>
     [HttpGet]
     [AllowAnonymous]
     public async Task<IActionResult> GetAll(
@@ -77,6 +78,7 @@ public class BlogController : ControllerBase
         });
     }
 
+    /// <param name="lang">Locale for returned strings: en, ar, or tr.</param>
     [HttpGet("{id:int}")]
     [AllowAnonymous]
     public async Task<IActionResult> GetById(int id, [FromQuery] string lang = "en")
@@ -95,6 +97,7 @@ public class BlogController : ControllerBase
         return Ok(new { success = true, data = blog.ToPublicDto(lang, baseUrl) });
     }
 
+    /// <param name="lang">Locale for returned strings: en, ar, or tr.</param>
     [HttpGet("slug/{slug}")]
     [AllowAnonymous]
     public async Task<IActionResult> GetBySlug(string slug, [FromQuery] string lang = "en")

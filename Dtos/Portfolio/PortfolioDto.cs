@@ -11,8 +11,13 @@ namespace BackEnd.Dtos.Portfolio
         public int Id { get; set; }
         public String EnTitle { get; set; } = String.Empty;
         public String ArTitle { get; set; } = String.Empty;
+        public String TrTitle { get; set; } = String.Empty;
         public String EnDescription { get; set; } = String.Empty;
         public String ArDescription { get; set; } = String.Empty;
+        public String TrDescription { get; set; } = String.Empty;
+        /// <summary>Source language for submitted title/description (en, ar, tr).</summary>
+        public string OriginalLanguage { get; set; } = "en";
+        public bool IsTranslated { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         public bool Status { get; set; } = true;
@@ -44,6 +49,10 @@ namespace BackEnd.Dtos.Portfolio
         public string Type { get; set; } = string.Empty;
         /// <summary>Optional absolute URL if thumbnail is hosted elsewhere (otherwise use PUT …/thumbnail).</summary>
         public string? ThumbnailUrl { get; set; }
+        /// <summary>Which language you authored <see cref="EnTitle"/>/<see cref="ArTitle"/>/<see cref="TrTitle"/> in (en | ar | tr).</summary>
+        public string? OriginalLanguage { get; set; }
+        public string TrTitle { get; set; } = string.Empty;
+        public string TrDescription { get; set; } = string.Empty;
     }
 
     public class PortfolioImageDto
@@ -66,6 +75,10 @@ namespace BackEnd.Dtos.Portfolio
         public bool? Status { get; set; }
         public List<string> UserIds { get; set; } = new List<string>();
         public string Type { get; set; } = string.Empty;
+        /// <summary>Which fields are authoritative: en, ar, or tr (others filled by DeepL).</summary>
+        public string? OriginalLanguage { get; set; }
+        public string TrTitle { get; set; } = string.Empty;
+        public string TrDescription { get; set; } = string.Empty;
     }
 
     public class PortfolioImageCreateDto

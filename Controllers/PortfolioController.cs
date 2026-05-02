@@ -25,17 +25,20 @@ namespace BackEnd.Controllers
     private readonly IPortfolioRepository _portfolioRepository;
     private readonly ApplicationDBContext _context;
     private readonly UserManager<AppUser> _userManager;
+    private readonly IPortfolioTranslationService _portfolioTranslation;
     private readonly ILogger<PortfolioController> _logger;
 
     public PortfolioController(
         IPortfolioRepository portfolioRepository,
         ApplicationDBContext context,
         UserManager<AppUser> userManager,
+        IPortfolioTranslationService portfolioTranslation,
         ILogger<PortfolioController> logger)
     {
       _portfolioRepository = portfolioRepository;
       _context = context;
       _userManager = userManager;
+      _portfolioTranslation = portfolioTranslation;
       _logger = logger;
     }
 
@@ -71,7 +74,7 @@ namespace BackEnd.Controllers
         }
 
         _logger.LogInformation($"CreatePortfolio: Creating portfolio for user {userId}");
-        _logger.LogInformation($"CreatePortfolio: DTO data - EnTitle: {dto.EnTitle}, ArTitle: {dto.ArTitle}, EnDescription: {dto.EnDescription}, ArDescription: {dto.ArDescription}, Type: {dto.Type}");
+        _logger.LogInformation($"CreatePortfolio: DTO — OriginalLanguage: {dto.OriginalLanguage}, EnTitle: {dto.EnTitle}, ArTitle: {dto.ArTitle}, TrTitle: {dto.TrTitle}, Type: {dto.Type}");
 
         // Parse the PortfolioData if it's a string
         DateTime portfolioData;
@@ -100,10 +103,6 @@ namespace BackEnd.Controllers
 
         var portfolio = new Portfolio
         {
-          EnTitle = dto.EnTitle ?? string.Empty,
-          ArTitle = dto.ArTitle ?? string.Empty,
-          EnDescription = dto.EnDescription ?? string.Empty,
-          ArDescription = dto.ArDescription ?? string.Empty,
           PortfolioLink = dto.PortfolioLink ?? string.Empty,
           BehanceLink = dto.BehanceLink ?? string.Empty,
           YoutubeLink = dto.YoutubeLink ?? string.Empty,
@@ -117,7 +116,24 @@ namespace BackEnd.Controllers
               : dto.ThumbnailUrl
         };
 
-        _logger.LogInformation($"CreatePortfolio: Portfolio object created - EnTitle: {portfolio.EnTitle}, ArTitle: {portfolio.ArTitle}, Type: {portfolio.Type}");
+        if (string.IsNullOrWhiteSpace(dto.OriginalLanguage))
+        {
+          portfolio.EnTitle = dto.EnTitle ?? string.Empty;
+          portfolio.ArTitle = dto.ArTitle ?? string.Empty;
+          portfolio.TrTitle = dto.TrTitle ?? string.Empty;
+          portfolio.EnDescription = dto.EnDescription ?? string.Empty;
+          portfolio.ArDescription = dto.ArDescription ?? string.Empty;
+          portfolio.TrDescription = dto.TrDescription ?? string.Empty;
+          portfolio.OriginalLanguage = "en";
+          portfolio.IsTranslated = false;
+        }
+        else
+        {
+          ApplyAuthoritativePortfolioTextsForCreate(portfolio, dto);
+          await _portfolioTranslation.PreparePortfolioTranslationsAsync(portfolio);
+        }
+
+        _logger.LogInformation($"CreatePortfolio: Portfolio prepared — EnTitle: {portfolio.EnTitle}, ArTitle: {portfolio.ArTitle}, TrTitle: {portfolio.TrTitle}, Type: {portfolio.Type}");
 
         try
         {
@@ -331,11 +347,6 @@ namespace BackEnd.Controllers
           return NotFound("Portfolio not found");
         }
 
-        // Update basic info
-        portfolio.EnTitle = dto.EnTitle ?? portfolio.EnTitle;
-        portfolio.ArTitle = dto.ArTitle ?? portfolio.ArTitle;
-        portfolio.EnDescription = dto.EnDescription ?? portfolio.EnDescription;
-        portfolio.ArDescription = dto.ArDescription ?? portfolio.ArDescription;
         portfolio.PortfolioLink = dto.PortfolioLink ?? portfolio.PortfolioLink;
         portfolio.BehanceLink = dto.BehanceLink ?? portfolio.BehanceLink;
         portfolio.YoutubeLink = dto.YoutubeLink ?? portfolio.YoutubeLink;
@@ -354,6 +365,21 @@ namespace BackEnd.Controllers
 
         portfolio.Status = dto.Status ?? portfolio.Status;
         portfolio.Type = dto.Type ?? portfolio.Type;
+
+        if (string.IsNullOrWhiteSpace(dto.OriginalLanguage))
+        {
+          portfolio.EnTitle = dto.EnTitle ?? portfolio.EnTitle;
+          portfolio.ArTitle = dto.ArTitle ?? portfolio.ArTitle;
+          portfolio.TrTitle = dto.TrTitle ?? portfolio.TrTitle;
+          portfolio.EnDescription = dto.EnDescription ?? portfolio.EnDescription;
+          portfolio.ArDescription = dto.ArDescription ?? portfolio.ArDescription;
+          portfolio.TrDescription = dto.TrDescription ?? portfolio.TrDescription;
+        }
+        else
+        {
+          ApplyAuthoritativePortfolioTextsForUpdate(portfolio, dto);
+          await _portfolioTranslation.PreparePortfolioTranslationsAsync(portfolio);
+        }
 
         // Update associated users if provided
         if (dto.UserIds != null)
@@ -681,6 +707,62 @@ namespace BackEnd.Controllers
       {
         _logger.LogError(ex, $"DeleteAllPortfolioImages: Unexpected error for portfolio {portfolioId}");
         return StatusCode(500, new { error = "Internal server error", message = ex.Message });
+      }
+    }
+
+    private static string NormalizePortfolioLang(string? value)
+    {
+      if (string.IsNullOrWhiteSpace(value))
+        return "en";
+      var v = value.Trim().ToLowerInvariant();
+      if (v.StartsWith("ar", StringComparison.Ordinal))
+        return "ar";
+      if (v.StartsWith("tr", StringComparison.Ordinal))
+        return "tr";
+      return "en";
+    }
+
+    /// <summary>Sets authoritative title/description from <paramref name="dto"/> based on <see cref="PortfolioCreateDto.OriginalLanguage"/>.</summary>
+    private static void ApplyAuthoritativePortfolioTextsForCreate(Portfolio portfolio, PortfolioCreateDto dto)
+    {
+      var lang = NormalizePortfolioLang(dto.OriginalLanguage);
+      portfolio.OriginalLanguage = lang;
+      switch (lang)
+      {
+        case "en":
+          portfolio.EnTitle = dto.EnTitle?.Trim() ?? string.Empty;
+          portfolio.EnDescription = dto.EnDescription?.Trim() ?? string.Empty;
+          break;
+        case "ar":
+          portfolio.ArTitle = dto.ArTitle?.Trim() ?? string.Empty;
+          portfolio.ArDescription = dto.ArDescription?.Trim() ?? string.Empty;
+          break;
+        default:
+          portfolio.TrTitle = dto.TrTitle?.Trim() ?? string.Empty;
+          portfolio.TrDescription = dto.TrDescription?.Trim() ?? string.Empty;
+          break;
+      }
+    }
+
+    /// <summary>Merges authoritative fields from the update DTO, then DeepL fills the other locales.</summary>
+    private static void ApplyAuthoritativePortfolioTextsForUpdate(Portfolio portfolio, PortfolioUpdateDto dto)
+    {
+      var lang = NormalizePortfolioLang(dto.OriginalLanguage ?? portfolio.OriginalLanguage);
+      portfolio.OriginalLanguage = lang;
+      switch (lang)
+      {
+        case "en":
+          portfolio.EnTitle = dto.EnTitle ?? portfolio.EnTitle;
+          portfolio.EnDescription = dto.EnDescription ?? portfolio.EnDescription;
+          break;
+        case "ar":
+          portfolio.ArTitle = dto.ArTitle ?? portfolio.ArTitle;
+          portfolio.ArDescription = dto.ArDescription ?? portfolio.ArDescription;
+          break;
+        default:
+          portfolio.TrTitle = dto.TrTitle ?? portfolio.TrTitle;
+          portfolio.TrDescription = dto.TrDescription ?? portfolio.TrDescription;
+          break;
       }
     }
 
